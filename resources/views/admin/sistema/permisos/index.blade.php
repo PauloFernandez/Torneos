@@ -65,7 +65,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5 usuarios</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $permiso->roles_count }} usuarios</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
                                             <a href="{{ route('admin.sistema.permisos.edit', $permiso) }}" class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
                                             <form action="{{ route('admin.sistema.permisos.destroy', $permiso) }}" method="post">
@@ -119,7 +119,8 @@
             </div>
         </div>
     </div>
-    @push('scripts')
+ 
+@push('scripts')
     @vite(['resources/js/pages/roles.js'])
-    @endpush
+@endpush
 </x-app-layout>

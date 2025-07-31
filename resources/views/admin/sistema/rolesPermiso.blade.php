@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        {!! Form::model($role, ['route' => ['admin.sistema.rolePermiso.update', $role], 'method'=>'put']) !!}
+        {!! Form::model($role, ['route' => ['admin.sistema.rolesPermiso.update', $role], 'method'=>'put']) !!}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach($permisos as $permiso)
             <div class="permission-card bg-white border rounded-lg p-4 transition duration-200">

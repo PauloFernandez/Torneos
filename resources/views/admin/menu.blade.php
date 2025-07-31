@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <div class="flex items-center space-x-4">
             <div class="flex items-center">
-                <img class="h-12" src="/img/logoTorneo.png" alt="Torneos Cup Logo">
+                <x-application-logo class="h-16 fill-current text-gray-500" />
                 <span class="text-xl font-bold">Torneos Cup</span>
             </div>
         </div>

@@ -8,11 +8,11 @@
 
         <!-- Menú de Navegación Principal -->
         <nav class="hidden md:flex items-center gap-6">
-            <a href="{{ route('jugadores.partidos') }}"
+            <a href=""
                 class="text-gray-300 hover:text-white font-semibold transition-colors">Partidos</a>
             <a href="{{ route('jugadores.clasificaciones') }}"
                 class="text-gray-300 hover:text-white font-semibold transition-colors">Clasificación</a>
-            <a href="noticias.html" class="text-white font-bold border-b-2 border-purple-400 pb-1">Noticias</a>
+            <a href="" class="text-white font-bold border-b-2 border-purple-400 pb-1">Noticias</a>
         </nav>
 
         <!-- Perfil de Usuario -->

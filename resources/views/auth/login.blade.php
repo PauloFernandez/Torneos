@@ -1,6 +1,6 @@
 <x-guest-layout>
         <div class="mb-6 flex flex-col bg-slate-300">
-        <div class="m-1">Usuarios de prueva del sistema</div>
+        <div class="m-1">Usuarios de prueba del sistema</div>
         <div class="m-2">
             <h3>Admin</h3>
             <ul class="ms-3">
@@ -25,6 +25,12 @@
     </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    @if (session('error'))
+        <div class="mb-4 p-4 text-sm text-red-700 bg-red-100 rounded-lg border border-red-300">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <form method="POST" action="{{ route('login') }}">
         @csrf

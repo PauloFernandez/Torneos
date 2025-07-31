@@ -10,7 +10,7 @@ class PermisoController extends Controller
 {
         public function index()
     {
-        $permisos = Permission::all();
+        $permisos = Permission::withCount('roles')->get();
         return view('admin.sistema.permisos.index', compact('permisos'));
     }
 

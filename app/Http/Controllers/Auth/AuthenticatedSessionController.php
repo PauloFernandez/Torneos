@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+        if ($user->hasRole('Jugador')) {
+            return redirect()->route('jugadores.clasificaciones');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

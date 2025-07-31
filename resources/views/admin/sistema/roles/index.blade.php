@@ -69,10 +69,10 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5 usuarios
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $role->users_count }} usuarios
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
-                                                <a href="{{ route('admin.sistema.rolePermiso.edit', $role) }}"
+                                                <a href="{{ route('admin.sistema.rolesPermiso.edit', $role) }}"
                                                     class="text-green-600 hover:text-green-900 mr-3">Asignar permisos</a>
                                                 <a href="{{ route('admin.sistema.roles.edit', $role) }}"
                                                     class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
@@ -126,7 +126,9 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-        @vite(['resources/js/pages/roles.js'])
-    @endpush
+   
+@push('scripts')
+    @vite(['resources/js/pages/roles.js'])
+@endpush
+    
 </x-app-layout>

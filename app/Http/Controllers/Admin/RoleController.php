@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
         public function index()
     {
-        $roles = Role::all();
+        $roles = Role::withCount('users')->get();
         return view('admin.sistema.roles.index', compact('roles'));
     }
 
@@ -29,7 +28,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $role->update(['name' => $request->name]);
-        return redirect()->route('roles.index');
+        return redirect()->route('admin.sistema.roles.index');
     }
 
     public function destroy(Role $role)

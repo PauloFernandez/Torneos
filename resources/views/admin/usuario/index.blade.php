@@ -12,7 +12,7 @@
                 <div>
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-lg font-semibold text-gray-800">Lista de Usuarios</h2>
-                        <a href="{{ route('usuario.create') }}"
+                        <a href="{{ route('usuarios.create') }}"
                             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                             <i class="fas fa-plus mr-2"></i> Nuevo Usuario
                         </a>
@@ -55,10 +55,8 @@
                                     @forelse ($usuarios as $usuario)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                <div
-                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                                                    <i class="fas fa-user-tie"></i>{{ $usuario->file_uri }}
-                                                </div>
+                                                <img src="{{ asset('img/' . $usuario->file_uri) }}" alt="Imagen Foto"
+                                                    style="width: 40px; height: 35px">
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $usuario->documento }}
                                             </td>
@@ -76,16 +74,15 @@
                                             </td>
                                             <!-- Botones -->
                                             <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
-                                                <a href=""
+                                                <a href="{{ route('usuarios.edit', $usuario) }}"
                                                     class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
-                                                @can('Eliminar')
-                                                    <form action="{{ route('usuario.destroy', $usuario) }}" method="post">
+                                                 @role('Administrador')
+                                                    <form action="{{ route('usuarios.destroy', $usuario) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="text-red-600 hover:text-red-900">Eliminar</button>
                                                     </form>
-                                                @endcan
-
+                                                @endrole
                                             </td>
                                         </tr>
                                     @empty

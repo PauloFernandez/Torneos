@@ -41,17 +41,17 @@
 
             <div class="mt-4">
                 <p class="text-xs uppercase text-gray-400 mb-2">Configuración</p>
-                <a href="{{ route('usuario.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                <a href="{{ route('usuarios.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-users-cog mr-2"></i> Usuarios
                 </a>
                 @role('Administrador')
+                <div class="relative group">
                     <!-- Dropdown Button -->
-                    <button id="dropdownButton" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                    <button class="block py-2 px-3 hover:bg-gray-600 rounded-md w-full text-left">
                         <i class="fas fa-cog mr-2"></i> Configuración
                     </button>
                     <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute  mt-2 w-48 bg-gray-800 text-white rounded-md shadow-lg z-50">
+                    <div class="absolute top-full left-0 w-48 bg-gray-800 text-white rounded-md shadow-lg z-50 hidden group-hover:block">
                         <a href="{{ route('admin.sistema.roles.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                             Roles
                         </a>
@@ -59,25 +59,9 @@
                             Permisos
                         </a>
                     </div>
-                    @endrole
                 </div>
-            
+                 @endrole 
+                </div>
         </div>
     </nav>
 </div>
-<!-- Script to toggle dropdown -->
-<script>
-    const button = document.getElementById('dropdownButton');
-    const menu = document.getElementById('dropdownMenu');
-
-    button.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-    });
-
-    // Optional: close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!button.contains(e.target) && !menu.contains(e.target)) {
-            menu.classList.add('hidden');
-        }
-    });
-</script>

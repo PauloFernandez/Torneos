@@ -13,7 +13,7 @@ class AsignarPermisoController extends Controller
     {
         //Para Asignar permisos a los roles
         $permisos = Permission::all();
-        return view('admin.sistema.rolePermiso', compact('role', 'permisos'));
+        return view('admin.sistema.rolesPermiso', compact('role', 'permisos'));
     }
 
     public function update(Request $request, Role $role)
