@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AsignarPermisoController;
+use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TorneoController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Jugador\JugadorController;
 use App\Http\Controllers\Jugador\PerfilController;
@@ -31,10 +33,9 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     });
 
     //Rutas de usuarios y administrador
-    Route::resource('/usuario', UserController::class)->names('usuarios');
-    Route::get('/layout/admin/cancha', function () {
-        return view('admin.cancha.index');
-    })->name('admin.cancha.index');
+    Route::resource('/usuarios', UserController::class)->names('usuarios');
+    Route::resource('/noticias', NoticiaController::class)->names('noticias');
+    Route::resource('/torneos', TorneoController::class)->names('torneos');
 });
 
 //Rutas de Jugador

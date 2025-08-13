@@ -55,8 +55,10 @@
                                     @forelse ($usuarios as $usuario)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                <img src="{{ asset('img/' . $usuario->file_uri) }}" alt="Imagen Foto"
-                                                    style="width: 40px; height: 35px">
+                                                <a href="{{ route('usuarios.show', $usuario) }}">
+                                                    <img src="{{ asset('img/' . $usuario->file_uri) }}" alt="Imagen Foto"
+                                                        style="width: 40px; height: 35px">
+                                                </a>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $usuario->documento }}
                                             </td>

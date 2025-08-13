@@ -7,15 +7,6 @@
             </div>
         </div>
 
-        <div class="md:flex space-x-6">
-            <a href="{{ route('admin.dashboard') }}" class="hover:text-gray-300">Dashboard</a>
-            <a href="#" class="hover:text-gray-300">Torneos</a>
-            <a href="#" class="hover:text-gray-300">Equipos</a>
-            <a href="#" class="hover:text-gray-300">Jugadores</a>
-            <a href="#" class="hover:text-gray-300">Partidos</a>
-            <a href="#" class="hover:text-gray-300">Noticias</a>
-        </div>
-
         <!-- Perfil de Usuario -->
         <div class="flex items-center space-x-4">
             <div class="relative group">

@@ -273,7 +273,7 @@
                             <span>Premio: $ 50,000 + Ultimate Pack</span>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
-                            <span class="text-cyan-400 font-medium">Entrada: $ 5,000</span>
+                            <span class="text-cyan-400 font-medium">Inscripción: $ 5,000</span>
                             <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
                                 Unirse
                             </button>
@@ -303,7 +303,7 @@
                             <span>Premio: $ 35,000</span>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
-                            <span class="text-cyan-400 font-medium">Entrada: $ 3,000</span>
+                            <span class="text-cyan-400 font-medium">Inscripción: $ 3,000</span>
                             <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
                                 Unirse
                             </button>
@@ -333,7 +333,7 @@
                             <span>Premio: Mando DualSense Edición Especial</span>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
-                            <span class="text-cyan-400 font-medium">Entrada: $ 1,000</span>
+                            <span class="text-cyan-400 font-medium">Inscripción: $ 1,000</span>
                             <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
                                 Unirse
                             </button>
@@ -609,8 +609,8 @@
             </div>
             <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center">
-                    <img class="h-8" src="/img/logoTorneo.png" alt="Torneos Cup Logo">
-                    <span class="ml-2 text-white font-medium">Torneos Cup</span>
+                    <img class="h-7 md:h-9" src="/img/logos/PauDev.png" alt="Logo de PauDev - Desarrollador Web">
+                    <span class="ml-2 text-white font-medium">Desarrollador Web PauDev</span>
                 </div>
                 <div class="mt-4 md:mt-0">
                     <p class="text-gray-400 text-sm">

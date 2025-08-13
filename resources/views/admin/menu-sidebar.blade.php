@@ -12,7 +12,7 @@
 
             <div class="mt-4">
                 <p class="text-xs uppercase text-gray-400 mb-2">Gestión</p>
-                <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                <a href="{{ route('torneos.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-trophy mr-2"></i> Torneos
                 </a>
                 <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
@@ -27,14 +27,14 @@
                 <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-fw  fa-user-tie"></i> Árbitros
                 </a>
-                <a href="{{ route('admin.cancha.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                <a href="" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-map-marked-alt mr-2"></i> Canchas
                 </a>
             </div>
 
             <div class="mt-4">
                 <p class="text-xs uppercase text-gray-400 mb-2">Contenido</p>
-                <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                <a href="{{ route('noticias.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-newspaper mr-2"></i> Noticias
                 </a>
             </div>

@@ -27,13 +27,13 @@
     <div class="min-h-screen bg-gray-100">
         <!-- Admin Navigation -->
         @include('admin.menu')
-
         <div class="flex">
             <!-- Admin Sidebar -->
             @include('admin.menu-sidebar')
 
             <!-- Page Content -->
             <main class="flex-grow p-6">
+                @include('layouts._partials.messages')
                 <div class="bg-white rounded-lg shadow-md p-6">
                 {{ $slot }}
                 </div>

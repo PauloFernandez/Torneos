@@ -15,13 +15,25 @@ class UserController extends Controller
     public function index(): View
     {
         $usuarios = User::with('roles')->get();
-        return view('admin.usuario.index', compact('usuarios'));
+        return view('admin.usuarios.index', compact('usuarios'));
     }
 
     public function create(): View
     {
         $roles = Role::all();
-        return view('admin.usuario.create', compact('roles'));
+        return view('admin.usuarios.create', compact('roles'));
+    }
+
+    public function edit(User $usuario): View
+    {
+        $roles = Role::all();
+        return view('admin.usuarios.edit', compact('usuario', 'roles'));
+    }
+
+    public function show(User $usuario): View
+    {
+        $roles = Role::all();
+        return view('admin.usuarios.show', compact('usuario', 'roles'));
     }
 
     public function store(UserRequest $request): RedirectResponse
@@ -47,12 +59,6 @@ class UserController extends Controller
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
 
-    public function edit(User $usuario): View
-    {
-        $roles = Role::all();
-        return view('admin.usuario.edit', compact('usuario', 'roles'));
-    }
-
     public function update(UserRequest $request, User $usuario): RedirectResponse
     {
         //Tengo que ver que cuando edito un usuario sin foto y le quiero cargar la foto no me deja
@@ -63,7 +69,6 @@ class UserController extends Controller
                     unlink($oldImagePath);
                 }
             }
-
 
             $file = $request->file('file_uri');
             $fileName = $usuario->id . "-" . time() . "." . $file->extension();
@@ -80,7 +85,7 @@ class UserController extends Controller
             $usuario->syncRoles([$roleName]);
         }
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente');
     }
 
     public function destroy(User $usuario)
@@ -93,6 +98,6 @@ class UserController extends Controller
             }
         }
         $usuario->delete();
-        return back();
+        return back()->with('danger', 'Usuario eliminado exitosamente');
     }
 }

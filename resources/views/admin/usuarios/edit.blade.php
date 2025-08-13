@@ -39,7 +39,7 @@
                 <label for="documento" class="block text-sm font-medium text-gray-700 mb-1">Documento Identidad</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i class="fas fa-user text-gray-400"></i>
+                        <i class="fas fa-id-card text-gray-400"></i>
                     </div>
                     <input type="text" name="documento" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                         form-control @error('documento') is-invalid @enderror is-valid"
@@ -59,7 +59,7 @@
                     </div>
                     <input type="date" name="fecha_nacimiento" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                         form-control @error('fecha_nacimiento') is-invalid @enderror is-valid"
-                        value="{{ $usuario->fecha_nacimiento }}">
+                        value="{{ $usuario->fecha_nacimiento->format('Y-m-d') }}">
                 </div>
                 @error('fecha_nacimiento')
                     <span class="invalid-feedback text-red-600">
