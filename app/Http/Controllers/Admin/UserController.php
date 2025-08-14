@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Http\Services\GestionImagService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,11 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct(protected GestionImagService $gestionImag)
+    {
+        
+    }
+
     public function index(): View
     {
         $usuarios = User::with('roles')->get();
@@ -39,7 +45,6 @@ class UserController extends Controller
     public function store(UserRequest $request): RedirectResponse
     {
         $user = User::create($request->all());
-        //$user->assignRole($request->input('role'));
 
         $roleName = $request->input('role');
         if ($roleName) {
@@ -48,35 +53,14 @@ class UserController extends Controller
             $user->assignRole(['jugador']);
         }
 
-        if ($request->hasFile('file_uri')) {
-            $file = $request->file('file_uri');
-            $fileName = $user->id . "-" . time() . "." . $file->extension();
-            $destinationPath = public_path('img');
-            $file->move($destinationPath, $fileName);
-            $user->file_uri = $fileName;
-            $user->save();
-        }
+        $this->gestionImag->storage($request, $user); //llama al servicio para gestionar la carga de la foto
+
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
 
     public function update(UserRequest $request, User $usuario): RedirectResponse
     {
-        //Tengo que ver que cuando edito un usuario sin foto y le quiero cargar la foto no me deja
-        if ($request->hasFile('file_uri')) {
-            if ($usuario->file_uri && !empty($usuario->file_uri)) {
-                $oldImagePath = public_path('img/' . $usuario->file_uri);
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-            }
-
-            $file = $request->file('file_uri');
-            $fileName = $usuario->id . "-" . time() . "." . $file->extension();
-            $file->move(public_path('img'), $fileName);
-
-            $usuario->file_uri = $fileName;
-            $usuario->save();
-        }
+        $this->gestionImag->update($request, $usuario); //llama al servicio para gestionar la actualizacion de la foto
 
         $usuario->update($request->input());
 
@@ -90,13 +74,7 @@ class UserController extends Controller
 
     public function destroy(User $usuario)
     {
-
-        if ($usuario->file_uri) {
-            $imagePath = public_path('img/' . $usuario->file_uri);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-        }
+        $this->gestionImag->delete($usuario); //llama al servicio para gestionar la eliminacion de la foto
         $usuario->delete();
         return back()->with('danger', 'Usuario eliminado exitosamente');
     }
