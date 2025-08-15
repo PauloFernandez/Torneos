@@ -11,6 +11,21 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    
+    # Configuración de Node.js para Vite y Tailwind
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    # Instalar dependencias de Node.js
+    - name: Install Node Dependencies
+      run: npm ci
+
+    # Compilar assets con Vite (producción)
+    - name: Build assets with Vite
+      run: npm run build
 
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
@@ -49,15 +64,29 @@ jobs:
         echo "SESSION_LIFETIME=120" >> .env
 
     # Opcional pero recomendado para rendimiento (si no causa problemas)
-    #- name: Cache Laravel configurations
-    #  run: |
-    #    php artisan config:cache
-    #    php artisan route:cache
-    #    php artisan view:cache
-    #    php artisan migrate --force
-    #    php artisan db:seed --force
-    #    chmod -R 775 bootstrap/cache
-    #    chmod -R 775 public/storage
+    - name: Cache Laravel configurations
+      run: |
+        php artisan config:cache
+        php artisan route:cache
+        php artisan view:cache
+        chmod -R 775 bootstrap/cache
+        chmod -R 775 public/storage
+
+    # Limpiar archivos innecesarios antes del deploy
+    - name: Clean up unnecessary files
+      run: |
+        rm -rf node_modules
+        rm -rf .git
+        rm -rf tests
+        rm -f .gitignore
+        rm -f README.md
+        rm -f package*.json
+        rm -f vite.config.js
+        rm -f tailwind.config.js
+        rm -f postcss.config.js
+        rm -rf resources/js
+        rm -rf resources/css
+        rm -rf resources/sass
 
     - name: Deploy to FTP server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -69,3 +98,18 @@ jobs:
         port: 21
         local-dir: ./
         server-dir: /htdocs/
+        # Configuraciones para evitar timeouts
+        timeout: 300000
+                # Excluir archivos innecesarios
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/tests/**
+          **/.env.example
+          **/docker/**
+          **/.docker/**
+          **/Dockerfile*
+          **/docker-compose*
+          **/.dockerignore
+          **/.github/**
