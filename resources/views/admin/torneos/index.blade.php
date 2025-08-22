@@ -45,7 +45,7 @@
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @forelse ($torneos as $torneo)
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $torneo->nombre }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm"><a href="{{ route('torneos.show', $torneo) }}">{{ $torneo->nombre }}</a></td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $torneo->inscripcion }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $torneo->valor_cancha }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $torneo->fecha_inicio->format('d/m/Y') }}</td>

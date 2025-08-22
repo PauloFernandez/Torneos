@@ -100,7 +100,7 @@ jobs:
         server-dir: /htdocs/
         # Configuraciones para evitar timeouts
         timeout: 300000
-                # Excluir archivos innecesarios
+        # Excluir archivos innecesarios
         exclude: |
           **/.git*
           **/.git*/**

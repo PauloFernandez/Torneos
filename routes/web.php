@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ArbitroController;
 use App\Http\Controllers\Admin\AsignarPermisoController;
+use App\Http\Controllers\Admin\CanchaController;
 use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\RoleController;
@@ -20,10 +22,6 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     //Rutas de administrador
     Route::middleware(['role:Administrador'])->prefix('admin')->name('admin.sistema.')->group(function () {
         Route::resource('/roles', RoleController::class)->names('roles');
@@ -33,10 +31,16 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     });
 
     //Rutas de usuarios y administrador
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/usuarios', UserController::class)->names('usuarios');
     Route::resource('/noticias', NoticiaController::class)->names('noticias');
     Route::resource('/torneos', TorneoController::class)->names('torneos');
+    Route::resource('/arbitros', ArbitroController::class)->names('arbitros')->except('show');
+    Route::resource('/canchas', CanchaController::class)->names('canchas')->except('show');
 });
+
 
 //Rutas de Jugador
 Route::middleware(['auth', 'verified', 'active', 'role:Jugador'])->prefix('jugadores')->name('jugadores.')->group(function () {

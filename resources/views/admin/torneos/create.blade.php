@@ -30,7 +30,8 @@
                         <i class="fas fa-tags text-gray-400 mr-2"></i>
                     </div>
                     <select name="categoria"
-                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                        form-control @error('categoria') is-invalid @enderror is-valid">
                         <option value="" selected>Seleccionar categoria</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
@@ -38,6 +39,11 @@
                         <option value="Adolecente">Adolecente</option>
                     </select>
                 </div>
+                @error('categoria')
+                    <span class="invalid-feedback text-red-600">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div>
                 <label for="fecha_inicio" class="block text-sm font-medium text-gray-700 mb-1">Fecha de inicio</label>
@@ -124,7 +130,7 @@
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-coins text-gray-400"></i>
                     </div>
-                    <input type="tel" name="premio_extra"class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                    <input type="text" name="premio_extra"class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                         form-control @error('premio_extra') is-invalid @enderror is-valid"
                         placeholder="Una PlayStation" value="{{ old('premio_extra') }}">
                 </div>

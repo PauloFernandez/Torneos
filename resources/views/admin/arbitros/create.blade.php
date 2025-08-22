@@ -1,35 +1,10 @@
 <x-app-layout>
     <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Registrar Usuario</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Registrar Arbitro</h1>
     </div>
 
-    <form action="{{ route('usuarios.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
+    <form action="{{ route('arbitros.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
         @csrf
-        <!-- Foto de perfil -->
-        <div class="mb-4">
-            <label for="file_uri" class="block text-sm font-medium text-gray-700 mb-2">Foto de perfil</label>
-            <div class="flex items-center">
-                <div class="mr-4">
-                    <img id="preview" class="w-16 h-16 rounded-full object-cover border-2 border-gray-300" src="" alt="">
-                </div>
-                <div class="flex justify-center">
-                    <input type="file" id="file_uri" name="file_uri" accept="image/*" class="hidden" onchange="previewImage(this)"
-                         class="form-control @error('file_uri') is-invalid @enderror is-valid">
-                    <label for="file_uri" class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                        <i class="fas fa-upload mr-1"></i> Subir imagen
-                    </label>
-                    <div class="text-xs/5 text-gray-600 px-2 py-2">
-                        PNG, JPG menor a 10MB y máximo 650x650px
-                    </div>
-                </div>
-            </div>
-            @error('file_uri')
-                <span class="invalid-feedback text-red-600">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-
         <!-- Información básica -->
         <div class="grid grid-cols-2 gap-4">
             <div>
@@ -49,32 +24,32 @@
                 @enderror
             </div>
             <div>
-                <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento</label>
+                <label for="fecha_nac" class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-calendar text-gray-400"></i>
                     </div>
-                    <input type="date" name="fecha_nacimiento" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
-                            form-control @error('fecha_nacimiento') is-invalid @enderror is-valid" 
-                            value="{{ old('fecha_nacimiento') }}">
+                    <input type="date" name="fecha_nac" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                            form-control @error('fecha_nac') is-invalid @enderror is-valid" 
+                            value="{{ old('fecha_nac') }}">
                 </div>
-                @error('fecha_nacimiento')
+                @error('fecha_nac')
                     <span class="invalid-feedback text-red-600">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-user text-gray-400"></i>
                     </div>
-                    <input type="text" name="name" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 
-                        form-control @error('name') is-invalid @enderror is-valid"
-                        placeholder="Juan" value="{{ old('name') }}">
+                    <input type="text" name="nombre" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 
+                        form-control @error('nombre') is-invalid @enderror is-valid"
+                        placeholder="Juan" value="{{ old('nombre') }}">
                 </div>
-                @error('name')
+                @error('nombre')
                     <span class="invalid-feedback text-red-600">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -129,24 +104,6 @@
                 @enderror
             </div>
             <div>
-                <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Rol</label>
-                <select name="role"
-                    class="block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
-                    <option value="" selected>Seleccionar rol</option>
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->name }}">{{ $role->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
-                <select name="estado"
-                    class="block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
-                    <option value="activo" selected>Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
-            </div>
-            <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -162,31 +119,9 @@
                     </span>
                 @enderror
             </div>
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i class="fas fa-lock text-gray-400"></i>
-                    </div>
-                    <input type="password" id="password" name="password" class="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
-                            form-control @error('password') is-invalid @enderror is-valid"
-                            placeholder="••••••••" value="{{ old('password') }}">
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                        <i class="fas fa-eye-slash toggle-password text-gray-400 hover:text-gray-600" onclick="togglePassword('password')"></i>
-                    </div>
-                </div>
-                <div class="mt-1 text-xs text-gray-500">
-                    La contraseña debe tener al menos 8 caracteres, incluir números y letras.
-                </div>
-                @error('password')
-                    <span class="invalid-feedback text-red-600">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
         </div>
         <div class="mt-4 flex justify-center">
-            <a href="{{ route('usuarios.index') }}"
+            <a href="{{ route('arbitros.index') }}"
                 class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md mr-2 transition duration-200">
                 <i class="fas fa-times mr-2"></i>Cancelar
             </a>
@@ -196,35 +131,4 @@
             </button>
         </div>
     </form>
-
-    <script>
-        function togglePassword(fieldId) {
-            const field = document.getElementById(fieldId);
-            const icon = field.nextElementSibling.querySelector('i');
-
-            if (field.type === 'password') {
-                field.type = 'text';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                field.type = 'password';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-        }
-
-        function previewImage(input) {
-            const preview = document.getElementById('preview');
-            const file = input.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
 </x-app-layout>
