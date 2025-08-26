@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArbitroController;
 use App\Http\Controllers\Admin\AsignarPermisoController;
 use App\Http\Controllers\Admin\CanchaController;
+use App\Http\Controllers\Admin\EquipoController;
 use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\RoleController;
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     Route::resource('/torneos', TorneoController::class)->names('torneos');
     Route::resource('/arbitros', ArbitroController::class)->names('arbitros')->except('show');
     Route::resource('/canchas', CanchaController::class)->names('canchas')->except('show');
+    Route::resource('/equipos', EquipoController::class)->names('equipos')->except('show');
 });
 
 

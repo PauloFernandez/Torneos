@@ -19,12 +19,12 @@
                     <i class="fas fa-trophy mr-2"></i> Torneos
                 </a>
                 <a href="{{ route('arbitros.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
-                    <i class="fas fa-fw  fa-user-tie"></i> Árbitros
+                    <i class="fas fa-fw fa-user-tie mr-2"></i> Árbitros
                 </a>
-                <!--
-                <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                <a href="{{ route('equipos.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-users mr-2"></i> Equipos
                 </a>
+            <!--
                 <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-user mr-2"></i> Jugadores
                 </a>

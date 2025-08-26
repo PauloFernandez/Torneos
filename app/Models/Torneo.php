@@ -32,4 +32,9 @@ class Torneo extends Model
         'fecha_inicio' => 'date', // o 'datetime' si usaras hora también
         'fecha_fin' => 'date',
     ];
+
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class);
+    }
 }
