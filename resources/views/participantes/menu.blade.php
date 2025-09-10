@@ -10,7 +10,7 @@
         <nav class="hidden md:flex items-center gap-6">
             <a href=""
                 class="text-gray-300 hover:text-white font-semibold transition-colors">Partidos</a>
-            <a href="{{ route('jugadores.clasificaciones') }}"
+            <a href="{{ route('participantes.clasificaciones') }}"
                 class="text-gray-300 hover:text-white font-semibold transition-colors">Clasificación</a>
             <a href="" class="text-white font-bold border-b-2 border-purple-400 pb-1">Noticias</a>
         </nav>
@@ -36,7 +36,7 @@
                 class="glassmorphism absolute top-full right-0 mt-2 w-48 rounded-lg shadow-xl overflow-hidden
                             opacity-0 invisible group-hover:opacity-100 group-hover:visible
                             transform scale-95 group-hover:scale-100 transition-all duration-200 ease-out">
-                <a href="{{ route('jugadores.perfil.edit') }}" class="block px-4 py-3 text-sm text-gray-200 hover:bg-purple-600/50">Mi Perfil</a>
+                <a href="{{ route('participantes.perfil.edit') }}" class="block px-4 py-3 text-sm text-gray-200 hover:bg-purple-600/50">Mi Perfil</a>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

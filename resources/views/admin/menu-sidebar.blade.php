@@ -24,10 +24,11 @@
                 <a href="{{ route('equipos.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-users mr-2"></i> Equipos
                 </a>
-            <!--
-                <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+            
+                <a href="{{ route('jugadores.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-user mr-2"></i> Jugadores
                 </a>
+            <!--
                 <a href="#" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-calendar-alt mr-2"></i> Partidos
                 </a>
@@ -38,6 +39,12 @@
                 <p class="text-xs uppercase text-gray-400 mb-2">Contenido</p>
                 <a href="{{ route('noticias.index') }}" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
                     <i class="fas fa-newspaper mr-2"></i> Noticias
+                </a>
+            </div>
+            <div class="mt-4">
+                <p class="text-xs uppercase text-gray-400 mb-2">Gestión de Pagos</p>
+                <a href="" class="block py-2 px-3 hover:bg-gray-600 rounded-md">
+                    <i class="fas fa-file-invoice-dollar mr-2"></i>Facturación
                 </a>
             </div>
 

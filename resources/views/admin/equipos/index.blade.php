@@ -45,7 +45,7 @@
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @forelse ($equipos as $equipo)
                                         <tr>
-                                            <td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
                                                 <img src="{{ asset('img/' . $equipo->file_uri) }}" alt="Imagen Foto"
                                                         style="width: 40px; height: 35px">
                                             </td>
@@ -56,12 +56,15 @@
                                             <!-- Botones -->
                                             <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
                                                 <a href="{{ route('equipos.edit', $equipo) }}"
-                                                    class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                        <i class="fas fa-edit"></i> Editar</a>
                                                  @role('Administrador')
-                                                    <form action="{{ route('equipos.destroy', $equipo) }}" method="post">
+                                                    <form action="{{ route('equipos.destroy', $equipo) }}" method="post"
+                                                        onsubmit="event.preventDefault(); confirmAction(this, 'delete-team')">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="text-red-600 hover:text-red-900">Eliminar</button>
+                                                        <button class="text-red-600 hover:text-red-900">
+                                                            <i class="fas fa-trash"></i> Eliminar</button>
                                                     </form>
                                                 @endrole
                                             </td>
@@ -77,4 +80,8 @@
             </main>
         </div>
     </div>
+    <x-confirm-modal name="delete-team" title="Eliminar Equipo" buttonText="Eliminar">
+        ¿Estás seguro de eliminar este equipo?<br>
+        <small class="text-gray-500 mt-1 block">Se perderán todos los datos asociados.</small>
+    </x-confirm-modal>
 </x-app-layout>

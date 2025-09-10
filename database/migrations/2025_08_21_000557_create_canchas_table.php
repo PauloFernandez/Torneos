@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->enum('tipo_superficie', ['cesped_natural', 'cesped_artificial', 'otro']);
             $table->enum('estado', ['disponible', 'ocupada', 'mantenimiento']);
-            $table->decimal('precio_por_hora', 8, 2);
+            $table->unsignedDecimal('precio_por_hora', 8, 2);
             $table->boolean('techada')->default(0);
             $table->boolean('iluminacion')->default(0);
             $table->boolean('vestuario')->default(0);

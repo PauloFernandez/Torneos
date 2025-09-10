@@ -4,13 +4,14 @@ use App\Http\Controllers\Admin\ArbitroController;
 use App\Http\Controllers\Admin\AsignarPermisoController;
 use App\Http\Controllers\Admin\CanchaController;
 use App\Http\Controllers\Admin\EquipoController;
+use App\Http\Controllers\Admin\EquipoUserController;
 use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TorneoController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Jugador\JugadorController;
-use App\Http\Controllers\Jugador\PerfilController;
+use App\Http\Controllers\Participante\PerfilController;
+use App\Http\Controllers\Participante\ParticipanteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,19 +42,24 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     Route::resource('/arbitros', ArbitroController::class)->names('arbitros')->except('show');
     Route::resource('/canchas', CanchaController::class)->names('canchas')->except('show');
     Route::resource('/equipos', EquipoController::class)->names('equipos')->except('show');
+    //Modulo Jugador
+    Route::get('admin/jugadores', [EquipoUserController::class, 'index'])->name('jugadores.index');
+    Route::get('admin/jugadores/create', [EquipoUserController::class, 'create'])->name('jugadores.create');
+    Route::post('admin/jugadores', [EquipoUserController::class, 'store'])->name('jugadores.store');
+    Route::delete('admin/jugadores/{jugador}', [EquipoUserController::class, 'destroy'])->name('jugadores.destroy');
+
+    Route::get('admin/jugadores/{jugador}/edit/{equipo}', [EquipoUserController::class, 'edit'])->name('jugadores.edit');
+    Route::put('admin/jugadores/{jugador}', [EquipoUserController::class, 'update'])->name('jugadores.update');
 });
 
 
+
 //Rutas de Jugador
-Route::middleware(['auth', 'verified', 'active', 'role:Jugador'])->prefix('jugadores')->name('jugadores.')->group(function () {
+Route::middleware(['auth', 'verified', 'active', 'role:Jugador'])->prefix('participantes')->name('participantes.')->group(function () {
     Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil.edit');
     Route::patch('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
 
-    Route::get('/', [JugadorController::class, 'clasificaciones'])->name('clasificaciones');
-
-    Route::get('/jugadores/partidos', function () {
-        return view('/jugadores/partidos');
-    })->name('partidos');
+    Route::get('/clasificaciones', [ParticipanteController::class, 'clasificaciones'])->name('clasificaciones');
 });
 
 require __DIR__ . '/auth.php';

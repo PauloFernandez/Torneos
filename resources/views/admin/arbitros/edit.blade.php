@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Editar Arbitros</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Actualizar Arbitros</h1>
     </div>
 
     <form action="{{ route('arbitros.update', $arbitro) }}" method="POST" id="userForm" class="space-y-4" enctype="multipart/form-data">

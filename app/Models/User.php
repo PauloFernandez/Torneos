@@ -59,4 +59,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Noticia::class);
     }
+
+    // Relación muchos a muchos con equipos
+    public function equipos()
+    {
+        return $this->belongsToMany(Equipo::class)->withPivot('posicion', 'num_camiseta')->withTimestamps();
+    } 
 }

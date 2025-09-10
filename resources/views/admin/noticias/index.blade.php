@@ -57,12 +57,14 @@
                                             <!-- Botones -->
                                             <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
                                                 <a href="{{ route('noticias.edit', $noticia) }}"
-                                                    class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
-                                                
-                                                    <form action="{{ route('noticias.destroy', $noticia) }}" method="post">
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fas fa-edit"></i> Editar</a>
+                                                    <form action="{{ route('noticias.destroy', $noticia) }}" method="post"
+                                                    onsubmit="event.preventDefault(); confirmAction(this, 'delete-noticia')">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="text-red-600 hover:text-red-900">Eliminar</button>
+                                                        <button class="text-red-600 hover:text-red-900">
+                                                            <i class="fas fa-trash"></i> Eliminar</button>
                                                     </form>  
                                             </td>
                                     @empty
@@ -79,4 +81,8 @@
             </main>
         </div>
     </div>
+    <x-confirm-modal name="delete-noticia" title="Eliminar Noticia" buttonText="Eliminar">
+        ¿Estás seguro de eliminar esta noticia?<br>
+        <small class="text-gray-500 mt-1 block">Se perderán todos los datos asociados.</small>
+    </x-confirm-modal>
 </x-app-layout>

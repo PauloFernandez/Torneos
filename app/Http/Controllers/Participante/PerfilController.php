@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Jugador;
+namespace App\Http\Controllers\Participante;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -12,7 +12,7 @@ class PerfilController extends Controller
 {
     public function edit(Request $request): View
     {
-        return view('jugadores.perfil', [
+        return view('participantes.perfil', [
             'user' => $request->user(),
         ]);
     }

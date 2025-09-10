@@ -61,12 +61,15 @@
                                             <!-- Botones -->
                                             <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
                                                 <a href="{{ route('arbitros.edit', $arbitro) }}"
-                                                    class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fas fa-edit"></i> Editar</a>
                                                  @role('Administrador')
-                                                    <form action="{{ route('arbitros.destroy', $arbitro) }}" method="post">
+                                                    <form action="{{ route('arbitros.destroy', $arbitro) }}" method="post"
+                                                        onsubmit="event.preventDefault(); confirmAction(this, 'delete-arbitro')">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="text-red-600 hover:text-red-900">Eliminar</button>
+                                                        <button class="text-red-600 hover:text-red-900">
+                                                            <i class="fas fa-trash"></i> Eliminar</button>
                                                     </form>
                                                 @endrole
                                             </td>
@@ -82,4 +85,8 @@
             </main>
         </div>
     </div>
+    <x-confirm-modal name="delete-arbitro" title="Eliminar Arbitro" buttonText="Eliminar">
+        ¿Estás seguro de eliminar este arbitro?<br>
+        <small class="text-gray-500 mt-1 block">Se perderán todos los datos asociados.</small>
+    </x-confirm-modal>
 </x-app-layout>

@@ -15,4 +15,10 @@ class Equipo extends Model
     {
         return $this->belongsTo(Torneo::class);
     }
+
+    // Relación muchos a muchos con usuarios
+    public function usuarios()
+    {
+        return $this->belongsToMany(User::class)->withPivot('posicion', 'num_camiseta')->withTimestamps();
+    }
 }

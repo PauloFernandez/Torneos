@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Registrar Equipos</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Actualizar Equipos</h1>
     </div>
 
     <form action="{{ route('equipos.update', $equipo) }}" method="POST" class="space-y-4" enctype="multipart/form-data">
@@ -62,14 +62,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div>
-            <div>
-                <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
-                <select name="estado"
-                    class="block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
-                    <option value="Pendiente" {{ old('estado', $equipo->estado) == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
-                    <option value="Pagado" {{ old('estado', $equipo->estado) == 'Pagado' ? 'selected' : '' }}>Pagado</option>
-                </select>
             </div>
         <div class="mt-4 flex justify-center">
             <a href="{{ route('equipos.index') }}"

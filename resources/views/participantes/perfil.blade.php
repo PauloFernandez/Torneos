@@ -1,4 +1,4 @@
-@extends('layouts.jugadores')
+@extends('layouts.participantes')
 @section('title', 'Perfil')
 @section('content')
     <header class="text-center mb-12 fade-in">
@@ -25,7 +25,7 @@
                             @csrf
                         </form>
 
-                        <form method="post" action="{{ route('jugadores.perfil.update') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('participantes.perfil.update') }}" class="mt-6 space-y-6">
                             @csrf
                             @method('patch')
                             <div>

@@ -1,4 +1,4 @@
-@extends('layouts.jugadores')
+@extends('layouts.participantes')
 @section('title', 'Clasificaciones')
 @section('content')
     <header class="text-center mb-12 fade-in">

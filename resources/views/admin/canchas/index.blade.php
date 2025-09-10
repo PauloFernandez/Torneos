@@ -81,12 +81,17 @@
                                             <!-- Botones -->
                                             <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
                                                 <a href="{{ route('canchas.edit', $cancha) }}"
-                                                    class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
-                                                    <form action="{{ route('canchas.destroy', $cancha) }}" method="post">
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fas fa-edit"></i> Editar</a>
+                                                    @role('Administrador')
+                                                    <form action="{{ route('canchas.destroy', $cancha) }}" method="post"
+                                                        onsubmit="event.preventDefault(); confirmAction(this, 'delete-cancha')">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="text-red-600 hover:text-red-900">Eliminar</button>
+                                                        <button class="text-red-600 hover:text-red-900">
+                                                            <i class="fas fa-trash"></i> Eliminar</button>
                                                     </form>  
+                                                     @endrole
                                             </td>
                                     @empty
                                             <td class="px-6 py-4 whitespace-nowrap text-sm">
@@ -102,4 +107,8 @@
             </main>
         </div>
     </div>
+    <x-confirm-modal name="delete-cancha" title="Eliminar Cancha" buttonText="Eliminar">
+        ¿Estás seguro de eliminar esta cancha?<br>
+        <small class="text-gray-500 mt-1 block">Esta acción no se puede deshacer.</small>
+    </x-confirm-modal>
 </x-app-layout>

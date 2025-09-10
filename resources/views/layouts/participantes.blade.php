@@ -60,7 +60,7 @@
     </style>    
 </head>
 <body class="bg-gray-900 text-gray-100">
-    @include('jugadores.menu')
+    @include('participantes.menu')
 
     <div class="container mx-auto p-4 md:p-8">
         @yield('content')

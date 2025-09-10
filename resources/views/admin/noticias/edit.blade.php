@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="text-center mb-9 mt-5">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Registrar Noticia</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Actualizar Noticia</h1>
     </div>
 
     <form action="{{ route('noticias.update', $noticia ) }}" method="POST" class="space-y-4">
