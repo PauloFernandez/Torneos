@@ -64,5 +64,26 @@ class User extends Authenticatable
     public function equipos()
     {
         return $this->belongsToMany(Equipo::class)->withPivot('posicion', 'num_camiseta')->withTimestamps();
-    } 
+    }
+
+    public function partidosJugados()
+    {
+        return $this->belongsToMany(Partido::class, 'partido_jugadores', 'jugador_id', 'partido_id')
+            ->withPivot('equipo_id', 'goles', 'asistencias', 'tarjetas_amarillas', 'tarjetas_rojas', 'tipo_participacion')
+            ->withTimestamps();
+    }
+
+    //Relación con detalles de partidos (más directa)
+    public function detallesPartidos()
+    {
+        return $this->hasMany(DetallePartido::class, 'jugador_id');
+    }
+
+    // ⭐ NUEVA: Relación con sanciones
+    /* Pendiente
+    public function sanciones()
+    {
+        return $this->hasMany(Sancion::class, 'jugador_id');
+    }
+    */
 }

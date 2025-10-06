@@ -18,7 +18,7 @@
         <div class="m-2">
             <h3>Usuario rol jugador</h3>
             <ul class="ms-3">
-                <li>Email: jugaror@correo.com</li>
+                <li>Email: jugador@correo.com</li>
                 <li>Password: 12345678</li>
             </ul>
         </div>

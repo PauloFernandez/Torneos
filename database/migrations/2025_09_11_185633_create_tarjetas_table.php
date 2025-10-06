@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('tarjetas', function (Blueprint $table) {
             $table->id();
-            $table->string('file_uri')->nullable();
             $table->string('nombre');
-            $table->enum('estado',["Pendiente","Pagado"])->default('Pendiente');
-            $table->foreignId('torneo_id')->constrained('torneos')->onDelete('cascade');
+            $table->float('multa',8,2);
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('tarjetas');
     }
 };

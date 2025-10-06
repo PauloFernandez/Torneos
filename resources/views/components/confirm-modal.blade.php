@@ -1,4 +1,4 @@
-{{-- resources/views/components/confirm-modal.blade.php --}}
+{{-- Modal de confirmacion para la eliminacion de datos de mis index --}}
 @props([
     'name' => 'confirm-action',
     'title' => 'Confirmar acción',

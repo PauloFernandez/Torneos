@@ -19,4 +19,9 @@ class Cancha extends Model
         'vestuario',
         'observaciones',
     ];
+
+    public function partidos()
+    {
+        return $this->hasMany(Partido::class);
+    }
 }

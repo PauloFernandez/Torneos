@@ -3,11 +3,14 @@
 use App\Http\Controllers\Admin\ArbitroController;
 use App\Http\Controllers\Admin\AsignarPermisoController;
 use App\Http\Controllers\Admin\CanchaController;
+use App\Http\Controllers\Admin\DetallePartidoController;
 use App\Http\Controllers\Admin\EquipoController;
 use App\Http\Controllers\Admin\EquipoUserController;
 use App\Http\Controllers\Admin\NoticiaController;
+use App\Http\Controllers\Admin\PartidoController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TarjetaController;
 use App\Http\Controllers\Admin\TorneoController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Participante\PerfilController;
@@ -42,12 +45,21 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     Route::resource('/arbitros', ArbitroController::class)->names('arbitros')->except('show');
     Route::resource('/canchas', CanchaController::class)->names('canchas')->except('show');
     Route::resource('/equipos', EquipoController::class)->names('equipos')->except('show');
+    Route::resource('/tarjetas', TarjetaController::class)->names('tarjetas')->except('show');
+    //rutas de partidos
+    Route::resource('/partidos', PartidoController::class)->names('partidos')->except('show');
+    Route::get('admin/partidos/{partido}/get-details', [PartidoController::class, 'getDetails'])->name('partidos.get-details');
+    Route::put('admin/partidos/{partido}/update-results', [PartidoController::class, 'updateResults'])->name('partidos.update-results');
+
+    //Rutas de detalle de partidos
+    Route::resource('/detallePartidos', DetallePartidoController::class)->names('detallePartidos')->only(['index', 'edit', 'update', 'show', 'destroy']);
+    //Route::get('admin/detallePartidos', [DetallePartidoController::class, 'index'])->name('detallePartidos.index');
+    
     //Modulo Jugador
     Route::get('admin/jugadores', [EquipoUserController::class, 'index'])->name('jugadores.index');
     Route::get('admin/jugadores/create', [EquipoUserController::class, 'create'])->name('jugadores.create');
     Route::post('admin/jugadores', [EquipoUserController::class, 'store'])->name('jugadores.store');
     Route::delete('admin/jugadores/{jugador}', [EquipoUserController::class, 'destroy'])->name('jugadores.destroy');
-
     Route::get('admin/jugadores/{jugador}/edit/{equipo}', [EquipoUserController::class, 'edit'])->name('jugadores.edit');
     Route::put('admin/jugadores/{jugador}', [EquipoUserController::class, 'update'])->name('jugadores.update');
 });

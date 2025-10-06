@@ -16,6 +16,11 @@ class Equipo extends Model
         return $this->belongsTo(Torneo::class);
     }
 
+    public function partidos()
+    {
+        return $this->hasMany(Partido::class);
+    }
+
     // Relación muchos a muchos con usuarios
     public function usuarios()
     {

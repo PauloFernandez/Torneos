@@ -14,7 +14,7 @@ class Arbitro extends Model
 
     public function partidos()
     {
-        return $this->hasMany('App\Models\Partido');
+        return $this->hasMany(Partido::class);
     }
 
     protected $casts = [

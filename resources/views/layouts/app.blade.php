@@ -21,10 +21,12 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Blade directive for head scripts/styles if needed -->
+    @stack('styles')
 </head>
 
-<body class="bg-gray-100 font-sans">
-    <div class="min-h-screen bg-gray-100">
+<body class="bg-gray-100 font-sans antialiased">
+    <div class="bg-gray-100">
         <!-- Admin Navigation -->
         @include('admin.menu')
         <div class="flex">
@@ -34,13 +36,42 @@
             <!-- Page Content -->
             <main class="flex-grow p-6">
                 @include('layouts._partials.messages')
+
+                @isset($header)
+                    <header class="bg-white shadow-sm p-4 rounded-t-lg mb-4">
+                        <div class="flex items-center">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endisset
+
                 <div class="bg-white rounded-lg shadow-md p-6">
-                {{ $slot }}
+                    {{ $slot }}
                 </div>
             </main>
         </div>
     </div>
 
+    {{-- Script para el manejo de la sidebar en móviles (si aún no lo tienes) --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarToggle = document.getElementById('sidebarToggle'); // Necesitarás un botón de toggle en 'admin.menu'
+            const sidebar = document.querySelector('.sidebar');
+
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+            }
+
+            // Ocultar sidebar al hacer clic fuera en móvil
+            document.addEventListener('click', (event) => {
+                if (window.innerWidth <= 768 && sidebar.classList.contains('active') && !sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    @stack('scripts')
 </body>
-@stack('scripts')
 </html>
