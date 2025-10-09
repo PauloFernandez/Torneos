@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Http\Services\GestionImagService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
@@ -20,7 +19,7 @@ class UserController extends Controller
 
     public function index(): View
     {
-        $usuarios = User::with('roles')->get();
+        $usuarios = User::with('roles')->orderBy('name')->paginate(10);
         return view('admin.usuarios.index', compact('usuarios'));
     }
 

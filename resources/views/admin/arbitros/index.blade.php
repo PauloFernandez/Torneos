@@ -54,13 +54,13 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+            
+            @if ($arbitros->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $arbitros->links() }}
                 </x-slot>
             @endif
-            --}}
+            
     </x-responsive-table>
     <x-confirm-modal name="delete-arbitro" title="Eliminar Arbitro" buttonText="Eliminar">
         ¿Estás seguro de eliminar este arbitro?<br>

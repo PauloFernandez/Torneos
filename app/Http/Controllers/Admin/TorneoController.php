@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TorneoRequest;
 use App\Models\Torneo;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -13,7 +14,7 @@ class TorneoController extends Controller
 
     public function index(): View
     {
-        $torneos = Torneo::all();
+        $torneos = Torneo::orderBy('nombre')->paginate(5);
         return view('admin.torneos.index', compact('torneos'));
     }
 
@@ -38,9 +39,12 @@ class TorneoController extends Controller
         return view('admin.torneos.edit', compact('torneo'));
     }
 
-    public function update(TorneoRequest $request, Torneo $torneo): RedirectResponse
+    public function update(Request $request, Torneo $torneo)
     {
-        $torneo->update($request->all());
+        $data = $request->all();
+        $data['estado'] = $request->has('estado') ? 1 : 0;
+    
+        $torneo->update($data);
         return redirect()->route('torneos.index')->with('success', 'Torneo actualizado exitosamente.');
     }
 

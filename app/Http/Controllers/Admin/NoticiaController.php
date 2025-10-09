@@ -12,7 +12,7 @@ class NoticiaController extends Controller
 {
     public function index(): View
     {
-        $noticias = Noticia::with('user')->get();
+        $noticias = Noticia::with('user')->orderBy('fecha_publicado', 'desc')->paginate(10);
         return view('admin.noticias.index', compact('noticias'));
     }
 

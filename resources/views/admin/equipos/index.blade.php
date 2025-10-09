@@ -29,7 +29,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $equipo->nombre }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $equipo->torneo->nombre }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $equipo->torneo->inscripcion }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $equipo->estado }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $equipo->inscripcion_factura }}</td>
                 <!-- Botones -->
                 <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
                     <a href="{{ route('equipos.edit', $equipo) }}"
@@ -53,13 +53,12 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+            @if ($equipos->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $equipos->links() }}
                 </x-slot>
             @endif
-            --}}
+            
     </x-responsive-table>
     <x-confirm-modal name="delete-team" title="Eliminar Equipo" buttonText="Eliminar">
         ¿Estás seguro de eliminar este equipo?<br>

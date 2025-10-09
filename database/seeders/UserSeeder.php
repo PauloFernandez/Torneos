@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
 
         //Opcion 1- Crear usuarios adicionales usando el factory y asignando el rol 'Jugador'
 
-        $jugadores = User::factory(10)->create();
+        $jugadores = User::factory(100)->create();
         $jugadores->each(function ($user) {
             $user->assignRole('Jugador');
         });

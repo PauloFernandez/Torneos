@@ -23,7 +23,7 @@ class EquipoUserController extends Controller
                 $query->withPivot('posicion', 'num_camiseta');
             }])
             ->orderBy('name')
-            ->get();
+            ->paginate(5);
 
         return view('admin.jugadores.index', compact('jugadores'));
     }

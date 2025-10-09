@@ -56,13 +56,12 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+            @if ($canchas->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $canchas->links() }}
                 </x-slot>
             @endif
-            --}}
+            
     </x-responsive-table>
 
     <x-confirm-modal name="delete-cancha" title="Eliminar Cancha" buttonText="Eliminar">

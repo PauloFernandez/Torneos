@@ -2,16 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Arbitro;
+use App\Models\Partido;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ArbitroSeeder extends Seeder
+class PartidoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Arbitro::factory(40)->create();
+        Partido::factory(50)->create();
     }
 }

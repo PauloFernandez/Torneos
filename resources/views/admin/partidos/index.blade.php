@@ -113,13 +113,12 @@
             @endforelse
             </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
             @if ($partidos->hasPages())
                 <x-slot name="pagination">
                     {{ $partidos->links() }}
                 </x-slot>
             @endif
-            --}}
+           
     </x-responsive-table>
     <x-confirm-modal name="delete-partido" title="Eliminar Partido" buttonText="Eliminar">
         ¿Estás seguro de eliminar este partido?<br>

@@ -74,13 +74,13 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+           
+            @if ($jugadores->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $jugadores->links() }}
                 </x-slot>
             @endif
-            --}}
+            
     </x-responsive-table>
     {{-- COMPONENTE DEL MODAL - Solo agregar esta línea al final --}}
     <x-confirm-modal name="remove-player" title="Remover Jugador" buttonText="Remover">

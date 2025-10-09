@@ -16,11 +16,14 @@ class DatabaseSeeder extends Seeder
             PermisoSeeder::class,
             RolSeeder::class,
             UserSeeder::class,
-            //NoticiaSeeder::class,
+            NoticiaSeeder::class,
             ArbitroSeeder::class,
             CanchaSeeder::class,
+            TarjetaSeeder::class,
             TorneoSeeder::class,
             EquipoSeeder::class,
+            EquipoUserSeeder::class,
+            PartidoSeeder::class,
         ]);
     }
 }

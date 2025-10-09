@@ -65,13 +65,11 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+            @if ($usuarios->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $usuarios->links() }}
                 </x-slot>
             @endif
-            --}}
     </x-responsive-table>
     <x-confirm-modal name="delete-user" title="Eliminar Usuario" buttonText="Eliminar">
         ¿Estás seguro de eliminar este usuario?<br>

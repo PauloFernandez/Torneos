@@ -49,13 +49,12 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+            @if ($noticias->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $noticias->links() }}
                 </x-slot>
             @endif
-            --}}
+          
     </x-responsive-table>
     <x-confirm-modal name="delete-noticia" title="Eliminar Noticia" buttonText="Eliminar">
         ¿Estás seguro de eliminar esta noticia?<br>

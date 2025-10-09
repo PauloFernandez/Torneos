@@ -12,7 +12,8 @@ class ArbitroController extends Controller
 {
     public function index(): View
     {
-        $arbitros = Arbitro::all();
+        $arbitros = Arbitro::orderBy('nombre')
+            ->paginate(5);
         return view('admin.arbitros.index', compact('arbitros'));
     }
 

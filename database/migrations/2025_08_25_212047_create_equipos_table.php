@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('file_uri')->nullable();
             $table->string('nombre');
-            $table->enum('estado',["Pendiente","Pagado"])->default('Pendiente');
+            $table->enum('inscripcion_factura',["Pendiente","Pagado"])->default('Pendiente');
             $table->foreignId('torneo_id')->constrained('torneos')->onDelete('cascade');
             $table->timestamps();
         });

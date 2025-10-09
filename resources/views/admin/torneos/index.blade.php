@@ -63,13 +63,11 @@
             @endforelse
         </x-slot>
             {{-- Si usas paginación de Laravel --}}
-            {{--
-            @if ($partidos->hasPages())
+            @if ($torneos->hasPages())
                 <x-slot name="pagination">
-                    {{ $partidos->links() }}
+                    {{ $torneos->links() }}
                 </x-slot>
             @endif
-            --}}
     </x-responsive-table>
     <x-confirm-modal name="delete-torneo" title="Eliminar Torneo" buttonText="Eliminar">
         ¿Estás seguro de eliminar este torneo?<br>

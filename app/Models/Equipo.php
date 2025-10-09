@@ -9,7 +9,7 @@ class Equipo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['file_uri', 'nombre', 'estado', 'torneo_id'];
+    protected $fillable = ['file_uri', 'nombre', 'inscripcion_factura', 'torneo_id'];
 
     public function torneo()
     {

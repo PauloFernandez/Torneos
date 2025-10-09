@@ -12,6 +12,6 @@ class CanchaSeeder extends Seeder
      */
     public function run(): void
     {
-        Cancha::factory(5)->create();
+        Cancha::factory(50)->create();
     }
 }

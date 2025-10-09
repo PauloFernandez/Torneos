@@ -79,11 +79,4 @@ class User extends Authenticatable
         return $this->hasMany(DetallePartido::class, 'jugador_id');
     }
 
-    // ⭐ NUEVA: Relación con sanciones
-    /* Pendiente
-    public function sanciones()
-    {
-        return $this->hasMany(Sancion::class, 'jugador_id');
-    }
-    */
 }

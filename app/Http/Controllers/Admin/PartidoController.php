@@ -20,7 +20,7 @@ class PartidoController extends Controller
     {
         $partidos = Partido::where('estado', '!=', 'finalizado')
                 ->with(['arbitro', 'cancha', 'torneo', 'equipoLocal', 'equipoVisitante'])
-                ->get();
+                ->orderBy('fecha')->paginate(5);
         return view('admin.partidos.index', compact('partidos'));
     }
 

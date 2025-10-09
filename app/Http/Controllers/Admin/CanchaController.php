@@ -12,7 +12,8 @@ class CanchaController extends Controller
 {
     public function index(): View
     {
-        $canchas = Cancha::all();
+        $canchas = Cancha::orderBy('nombre')
+            ->paginate(5);
         return view('admin.canchas.index', compact('canchas'));
     }
 

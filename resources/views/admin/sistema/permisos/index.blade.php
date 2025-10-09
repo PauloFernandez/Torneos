@@ -1,89 +1,84 @@
 <x-app-layout>
-    <div>
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Header -->
-            <header class="bg-white shadow-sm justify-between p-4">
-                <div class="flex items-center">
-                    <h1 class="text-xl font-semibold text-gray-800">Roles y Permisos</h1>
-                </div>
-            </header>
+    <x-slot name="header">
+        <h1 class="text-xl font-semibold text-gray-800">Roles y Permisos</h1>
+    </x-slot>
 
-            <!-- Content -->
-            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
-                <!-- Tabs -->
-                <div class="mb-6">
-                    <div class="border-b border-gray-200">
-                        <nav class="-mb-px flex space-x-8">
-                            <a href="{{ route('admin.sistema.roles.index') }}"
-                                class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-4 py-3 text-sm font-medium">Roles</a>
-                            <button class="border-b-2 border-blue-500 text-blue-600 px-4 py-3 text-sm font-medium">Permisos</button>
-                        </nav>
-                    </div>
-                </div>
-
-                <!-- Permissions Section (Hidden by default) -->
-                <div>
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-lg font-semibold text-gray-800">Lista de Permisos</h2>
-                        <button id="addPermissionBtn"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
-                            <i class="fas fa-plus mr-2"></i> Nuevo Permiso
-                        </button>
-                    </div>
-                    <div class="bg-white shadow rounded-lg overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            ID</th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Nombre</th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Usuarios</th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($permisos as $permiso)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$permiso->id}}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div
-                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                                                    <i class="fas fa-user-tie"></i>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">{{$permiso->name}}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $permiso->roles_count }} usuarios</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
-                                            <a href="{{ route('admin.sistema.permisos.edit', $permiso) }}" class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
-                                            <form action="{{ route('admin.sistema.permisos.destroy', $permiso) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="text-red-600 hover:text-red-900">Eliminar</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+		<div class="mb-6">
+    	<div class="border-b border-gray-200">
+      	<nav class="-mb-px flex space-x-8">
+        	<a href="{{ route('admin.sistema.roles.index') }}"
+          		class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-4 py-3 text-sm font-medium">Roles</a>
+          <button class="border-b-2 border-blue-500 text-blue-600 px-4 py-3 text-sm font-medium">Permisos</button>
+      	</nav>
+     	</div>
+     </div>
+                
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg font-semibold text-gray-800">Lista de Permisos</h2>
+        <button id="addPermissionBtn"
+           			class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 -mt-1 rounded-md text-sm font-medium flex items-center">
+                <i class="fas fa-plus mr-2"></i> Nuevo Permiso
+         </button>
     </div>
+
+    <x-responsive-table>
+        <x-slot name="head">  
+        	<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>                          
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuarios</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+        </x-slot>
+        <x-slot name="body">
+            @forelse ($permisos as $permiso)
+            <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $permiso->id }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{$permiso->name}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+		              <div class="flex items-center">
+				            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+				               <i class="fas fa-user"></i>
+				            </div>
+		                <div class="ml-4">
+		                	<div class="text-sm font-medium text-gray-900">{{ $permiso->roles_count }}</div>
+		                </div>
+		              </div>
+                </td>
+                
+                <!-- Botones -->
+                <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
+		              <a href="{{ route('admin.sistema.permisos.edit', $permiso) }}" class="text-blue-600 hover:text-blue-900 mr-3">
+		              	 <i class="fas fa-edit"></i> Editar
+		             	</a>
+
+                  <form action="{{ route('admin.sistema.permisos.destroy', $permiso)  }}" method="post"
+                        onsubmit="event.preventDefault(); confirmAction(this, 'delete-permiso')">
+                        @csrf
+                        @method('delete')
+                        <button class="text-red-600 hover:text-red-900">
+                                <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                  </form> 
+                </td>
+            </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="px-4 py-6 whitespace-nowrap text-sm font-medium text-center text-gray-500">No hay datos ingresados</td>
+                </tr>
+            @endforelse
+        </x-slot>
+            {{-- Si usas paginación de Laravel --}}
+            @if ($permisos->hasPages())
+                <x-slot name="pagination">
+                    {{ $permisos->links() }}
+                </x-slot>
+            @endif
+            
+    </x-responsive-table>
+
+    <x-confirm-modal name="delete-permiso" title="Eliminar permiso" buttonText="Eliminar">
+        ¿Estás seguro de eliminar este permiso?<br>
+        <small class="text-gray-500 mt-1 block">Esta acción no se puede deshacer.</small>
+    </x-confirm-modal>
 
     <!-- Add Permission Modal -->
     <div id="addPermissionModal"

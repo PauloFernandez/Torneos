@@ -17,7 +17,7 @@ class EquipoController extends Controller
 
     public function index(): View
     {
-        $equipos = Equipo::with('torneo')->get();
+        $equipos = Equipo::with('torneo')->orderBy('nombre')->paginate(5);
         return view('admin.equipos.index', compact('equipos'));
     }
 
