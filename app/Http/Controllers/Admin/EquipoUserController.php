@@ -20,9 +20,9 @@ class EquipoUserController extends Controller
         $jugadores = User::role('jugador')
             ->whereHas('equipos') // Solo jugadores que tienen equipos
             ->with(['equipos' => function ($query) {
-                $query->withPivot('posicion', 'num_camiseta');
+                $query->withPivot('posicion', 'num_camiseta')
+                    ->orderBy('nombre');
             }])
-            ->orderBy('name')
             ->paginate(5);
 
         return view('admin.jugadores.index', compact('jugadores'));
