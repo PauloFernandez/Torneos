@@ -38,14 +38,12 @@ class Partido extends Model
         return $this->belongsTo(Equipo::class, 'equipo_visitante_id');
     }
 
-        //ESTA ES LA RELACIÓN QUE TE FALTABA 
     // Relación con los detalles de los jugadores que participaron
     public function detalles() 
     {
         return $this->hasMany(DetallePartido::class);
     }
-    
-    // También puedes agregar esta relación auxiliar
+
     // Para obtener directamente los jugadores que participaron
     public function jugadores() //De que modelo sale
     {

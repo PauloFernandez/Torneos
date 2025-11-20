@@ -71,7 +71,12 @@ Route::middleware(['auth', 'verified', 'active', 'role:Jugador'])->prefix('parti
     Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil.edit');
     Route::patch('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
 
+    Route::get('/asistencias', [ParticipanteController::class, 'asistencias'])->name('asistencias');
     Route::get('/clasificaciones', [ParticipanteController::class, 'clasificaciones'])->name('clasificaciones');
+    Route::get('/equipos', [ParticipanteController::class, 'equipos'])->name('equipos');
+    Route::get('/goleadores', [ParticipanteController::class, 'goleadores'])->name('goleadores');
+    Route::get('/partidos', [ParticipanteController::class, 'partidos'])->name('partidos');
+    Route::get('/noticias', [ParticipanteController::class, 'noticias'])->name('noticias');
 });
 
 require __DIR__ . '/auth.php';
