@@ -12,7 +12,10 @@ class AsignarPermisoController extends Controller
     public function edit(Role $role)
     {
         //Para Asignar permisos a los roles
-        $permisos = Permission::all();
+        $permisos = Permission::query()->when(request('search'), function($query){
+            return $query->where('name', 'LIKE', '%'. request('search') .'%');
+        })->paginate(15)->appends(request()->query());
+
         return view('admin.sistema.rolesPermiso', compact('role', 'permisos'));
     }
 

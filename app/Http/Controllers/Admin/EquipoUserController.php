@@ -17,13 +17,14 @@ class EquipoUserController extends Controller
     public function index(): View
     {
         // Obtener todos los jugadores que tienen equipos asignados
-        $jugadores = User::role('jugador')
-            ->whereHas('equipos') // Solo jugadores que tienen equipos
+        $jugadores = User::query()->role('jugador')->whereHas('equipos') // Solo jugadores que tienen equipos
+            ->when(request('search'), function ($buscar) {
+                return $buscar->where('name', 'LIKE', '%' . request('search') . '%')
+                    ->orWhere('apellido', 'LIKE', '%' . request('search') . '%');
+            })
             ->with(['equipos' => function ($query) {
-                $query->withPivot('posicion', 'num_camiseta')
-                    ->orderBy('nombre');
-            }])
-            ->paginate(5);
+                $query->withPivot('posicion', 'num_camiseta')->orderBy('nombre');
+            }])->paginate(5)->withQueryString();
 
         return view('admin.jugadores.index', compact('jugadores'));
     }
@@ -35,12 +36,14 @@ class EquipoUserController extends Controller
     {
         $equipos = Equipo::all();
         // Obtener jugadores disponibles (con rol jugador) que NO tengan equipo asignado
-        $jugadores = User::role('jugador')
-            ->where('estado', 'activo')
-            ->whereDoesntHave('equipos') // Excluir jugadores que ya tienen equipo
-            ->orderBy('documento')
-            ->orderBy('apellido')
-            ->get();
+        $jugadores = User::query()->role('jugador')->when(request('search'), function ($query) {
+                            // Agrupar las condiciones de búsqueda en un closure
+                            return $query->where(function ($subQuery) {
+                                   $subQuery->where('name', 'LIKE', '%' . request('search') . '%')
+                                            ->orWhere('apellido', 'LIKE', '%' . request('search') . '%');
+                            });
+                        })->where('estado', 'activo')->whereDoesntHave('equipos') // Excluir jugadores que ya tienen equipo
+                          ->orderBy('apellido')->paginate(5)->withQueryString();
 
         return view('admin.jugadores.create', compact('equipos', 'jugadores'));
     }

@@ -2,16 +2,19 @@
     <div class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Asignar jugador al Equipo</h1>
     </div>
-
-    <!-- Mostrar errores generales si los hay -->
-    @if ($errors->has('error'))
-        <div class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            <div class="flex">
-                <i class="fas fa-exclamation-triangle mr-2 mt-0.5"></i>
-                <strong>{{ $errors->first('error') }}</strong>
-            </div>
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <form action="{{ route('jugadores.create') }}" method="get">
+            @csrf
+                <div class="flex gap-2">
+                    <input class="flex-1 sm:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                           type="text" name="search" value="{{ old('search') }}" placeholder="Buscar jugador...">
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
+                        type="submit"><i class="fas fa-magnifying-glass mr-1"></i>Buscar
+                    </button>
+                </div>
+            </form>
         </div>
-    @endif
+
 
     <form action="{{ route('jugadores.store')}}" method="POST" class="space-y-4" enctype="multipart/form-data">
         @csrf

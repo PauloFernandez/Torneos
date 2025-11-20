@@ -12,11 +12,10 @@ class CanchaController extends Controller
 {
     public function index(): View
     {
-        $canchas = Cancha::query()->when(request('search'), function($query){
-                            return $query->where('nombre', 'LIKE','%'. request('search') . '%' );
-                            })->orderBy('nombre')
-                            ->paginate(5)
-                            ->withQueryString();
+        $canchas = Cancha::query()->when(request('search'), function ($query) {
+            return $query->where('nombre', 'LIKE', '%' . request('search') . '%');
+        })->orderBy('nombre')->paginate(5)->withQueryString();
+
         return view('admin.canchas.index', compact('canchas'));
     }
 

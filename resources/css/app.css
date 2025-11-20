@@ -33,7 +33,13 @@
     }
   }
 
-  @media (min-width: 1400px) {
+  @media (min-width: 1350px) {
+    .tabla-responsive {
+      max-width: 1270px;
+    }
+  }
+
+  @media (min-width: 1700px) {
     .tabla-responsive {
       max-width: 1550px;
     }

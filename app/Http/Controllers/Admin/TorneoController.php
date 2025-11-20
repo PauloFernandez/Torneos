@@ -14,7 +14,11 @@ class TorneoController extends Controller
 
     public function index(): View
     {
-        $torneos = Torneo::orderBy('nombre')->paginate(5);
+        $torneos = Torneo::query()->when(request('search'), function ($query) {
+            return $query->where('nombre', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('categoria', 'LIKE', '%' . request('search') . '%');
+        })->orderBy('nombre')->paginate(5)->withQueryString();
+
         return view('admin.torneos.index', compact('torneos'));
     }
 
@@ -43,7 +47,7 @@ class TorneoController extends Controller
     {
         $data = $request->all();
         $data['estado'] = $request->has('estado') ? 1 : 0;
-    
+
         $torneo->update($data);
         return redirect()->route('torneos.index')->with('success', 'Torneo actualizado exitosamente.');
     }

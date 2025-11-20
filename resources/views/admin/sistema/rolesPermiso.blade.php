@@ -7,11 +7,19 @@
             </div>
         </div>
 
-        <div class="mb-6">
-            <label class="block text-gray-700 mb-2">Buscar permisos:</label>
-            <div class="relative">
-                <input type="text" placeholder="Escribe para buscar..." class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+            <h2 class="block text-gray-700 mb-2">Buscar permisos:</h2>
+            <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <form action="{{ route('admin.sistema.rolesPermiso.edit', $role) }}" method="get" class="flex-1 sm:flex-initial">
+                @csrf
+                <div class="flex gap-2">
+                    <input class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        type="text" name="search" value="{{ old('search') }}" placeholder="Escribe para buscar...">
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
+                        type="submit"><i class="fas fa-magnifying-glass mr-1"></i>Buscar
+                    </button>
+                </div>
+                </form>
             </div>
         </div>
 

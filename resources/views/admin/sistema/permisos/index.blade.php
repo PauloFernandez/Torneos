@@ -3,22 +3,34 @@
         <h1 class="text-xl font-semibold text-gray-800">Roles y Permisos</h1>
     </x-slot>
 
-		<div class="mb-6">
+	<div class="mb-6">
     	<div class="border-b border-gray-200">
-      	<nav class="-mb-px flex space-x-8">
-        	<a href="{{ route('admin.sistema.roles.index') }}"
-          		class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-4 py-3 text-sm font-medium">Roles</a>
-          <button class="border-b-2 border-blue-500 text-blue-600 px-4 py-3 text-sm font-medium">Permisos</button>
-      	</nav>
+            <nav class="-mb-px flex space-x-8">
+                <a href="{{ route('admin.sistema.roles.index') }}"
+                    class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-4 py-3 text-sm font-medium">Roles</a>
+                <button class="border-b-2 border-blue-500 text-blue-600 px-4 py-3 text-sm font-medium">Permisos</button>
+            </nav>
      	</div>
      </div>
                 
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <h2 class="text-lg font-semibold text-gray-800">Lista de Permisos</h2>
-        <button id="addPermissionBtn"
-           			class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 -mt-1 rounded-md text-sm font-medium flex items-center">
-                <i class="fas fa-plus mr-2"></i> Nuevo Permiso
-         </button>
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <form action="{{ route('admin.sistema.permisos.index') }}" method="get" class="flex-1 sm:flex-initial">
+            @csrf
+                <div class="flex gap-2">
+                    <input class="flex-1 sm:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                           type="text" name="search" value="{{ old('search') }}" placeholder="Buscar...">
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
+                        type="submit"><i class="fas fa-magnifying-glass mr-1"></i>Buscar
+                    </button>
+                </div>
+            </form>
+
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 -mt-1 rounded-md text-sm font-medium flex items-center"
+                   id="addPermissionBtn"><i class="fas fa-plus mr-2"></i> Nuevo Permiso
+            </button>
+        </div>
     </div>
 
     <x-responsive-table>

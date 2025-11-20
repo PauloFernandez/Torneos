@@ -18,9 +18,15 @@ class PartidoController extends Controller
 {
     public function index(): View
     {
-        $partidos = Partido::where('estado', '!=', 'finalizado')
-                ->with(['arbitro', 'cancha', 'torneo', 'equipoLocal', 'equipoVisitante'])
-                ->orderBy('fecha')->paginate(5);
+        $partidos = Partido::query()->when(request('search'), function ($query) {
+                        return $query->where('fecha', 'LIKE', '%' . request('search') . '%')
+                                     ->orWhere('estado', 'LIKE', '%' . request('search') . '%');
+                    })->orWhereHas('torneo', function ($queryBuilder) {
+                        $queryBuilder->where('nombre', 'LIKE', '%' . request('search') . '%');
+                    })->where('estado', '!=', 'finalizado')
+                      ->with(['arbitro', 'cancha', 'torneo', 'equipoLocal', 'equipoVisitante'])
+                      ->orderBy('fecha', 'desc')->paginate(5)->withQueryString();
+
         return view('admin.partidos.index', compact('partidos'));
     }
 
@@ -57,7 +63,7 @@ class PartidoController extends Controller
     }
 
     public function destroy(Partido $partido)
-    { 
+    {
         $partido->delete();
         return back()->with('success', 'Partido eliminado exitosamente.');
     }
@@ -86,5 +92,4 @@ class PartidoController extends Controller
 
         return redirect()->route('partidos.index')->with('success', 'Resultados del partido actualizados exitosamente.');
     }
-
 }

@@ -3,12 +3,25 @@
         <h1 class="text-xl font-semibold text-gray-800">Administracion de Equipos</h1>
     </x-slot>
 
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <h2 class="text-lg font-semibold text-gray-800">Lista de Equipos</h2>
-        <a href="{{ route('equipos.create') }}"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
-             <i class="fas fa-plus mr-2"></i> Nuevo Equipos
-        </a>
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <form action="{{ route('equipos.index') }}" method="get" class="flex-1 sm:flex-initial">
+            @csrf
+                <div class="flex gap-2">
+                    <input class="flex-1 sm:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                           type="text" name="search" value="{{ old('search') }}" placeholder="Buscar equipos...">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
+                        type="submit"><i class="fas fa-magnifying-glass mr-1"></i>Buscar
+                    </button>
+                </div>
+            </form>
+
+            <a href="{{ route('equipos.create') }}"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                <i class="fas fa-plus mr-2"></i> Nuevo Equipos
+            </a>
+        </div>
     </div>
 
     <x-responsive-table>

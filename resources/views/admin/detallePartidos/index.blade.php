@@ -3,8 +3,20 @@
         <h1 class="text-xl font-semibold text-gray-800">Carga de Detalles de Partidos</h1>
     </x-slot>
 
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <h2 class="text-lg font-semibold text-gray-800">Lista de Partidos</h2>
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <form action="{{ route('detallePartidos.index') }}" method="get" class="flex-1 sm:flex-initial">
+            @csrf
+                <div class="flex gap-2">
+                    <input class="flex-1 sm:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                           type="text" name="search" value="{{ old('search') }}" placeholder="Buscar partido...">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
+                        type="submit"><i class="fas fa-magnifying-glass mr-1"></i>Buscar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <x-responsive-table>

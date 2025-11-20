@@ -13,11 +13,17 @@ use Illuminate\View\View;
 
 class EquipoController extends Controller
 {
-    public function __construct(protected GestionImagService $gestionImag){}
+    public function __construct(protected GestionImagService $gestionImag) {}
 
     public function index(): View
     {
-        $equipos = Equipo::with('torneo')->orderBy('nombre')->paginate(5);
+        $equipos = Equipo::query()->with('torneo')->when(request('search'), function ($query) {
+            return $query->where('nombre', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('inscripcion_factura', 'LIKE', '%' . request('search') . '%');    
+            })->orWhereHas('torneo', function ($queryBuilder) {
+                    $queryBuilder->where('nombre', 'LIKE', '%' . request('search') . '%');
+            })->paginate(5)->appends(request()->query());
+
         return view('admin.equipos.index', compact('equipos'));
     }
 
@@ -36,7 +42,7 @@ class EquipoController extends Controller
     }
 
     public function edit(Equipo $equipo)
-    {       
+    {
         $torneos = Torneo::orderBy('nombre')->get();
         return view('admin.equipos.edit', compact('equipo', 'torneos'));
     }

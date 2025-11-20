@@ -12,8 +12,12 @@ class ArbitroController extends Controller
 {
     public function index(): View
     {
-        $arbitros = Arbitro::orderBy('nombre')
-            ->paginate(5);
+        $arbitros = Arbitro::query()->when(request('search'), function ($query) {
+            return $query->where('documento', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('nombre', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('apellido', 'LIKE', '%' . request('search') . '%');
+        })->orderBy('nombre')->paginate(5)->withQueryString();
+
         return view('admin.arbitros.index', compact('arbitros'));
     }
 
@@ -24,8 +28,8 @@ class ArbitroController extends Controller
 
     public function store(ArbitrosRequest $request): RedirectResponse
     {
-        
-        Arbitro::create($request->all()); 
+
+        Arbitro::create($request->all());
         return redirect()->route('arbitros.index')->with('success', 'Arbitro registrado exitosamente.');
     }
 

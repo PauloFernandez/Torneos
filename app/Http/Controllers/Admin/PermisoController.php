@@ -8,9 +8,12 @@ use Spatie\Permission\Models\Permission;
 
 class PermisoController extends Controller
 {
-        public function index()
+    public function index()
     {
-        $permisos = Permission::withCount('roles')->orderBy('name')->paginate(10);
+        $permisos = Permission::query()->when(request('search'), function ($query) {
+            return $query->where('name', 'LIKE', '%'. request('search') .'%');
+        })->withCount('roles')->orderBy('name')->paginate(10)->withQueryString();
+
         return view('admin.sistema.permisos.index', compact('permisos'));
     }
 

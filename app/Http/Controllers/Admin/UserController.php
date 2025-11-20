@@ -12,14 +12,17 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function __construct(protected GestionImagService $gestionImag)
-    {
-        
-    }
+    public function __construct(protected GestionImagService $gestionImag) {}
 
     public function index(): View
     {
-        $usuarios = User::with('roles')->orderBy('name')->paginate(10);
+        $usuarios = User::query()->with('roles')->when(request('search'), function ($query) {
+            return $query->where('documento', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('name', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('apellido', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('email', 'LIKE', '%' . request('search') . '%');
+        })->orderBy('name')->paginate(10)->withQueryString();
+
         return view('admin.usuarios.index', compact('usuarios'));
     }
 

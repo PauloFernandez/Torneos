@@ -14,10 +14,13 @@ class DetallePartidoController extends Controller
 {
     public function index(): View
     {
-        $detallePartidos = Partido::where('estado', 'finalizado')
-            ->with(['equipoLocal', 'equipoVisitante', 'torneo'])
-            ->orderBy('fecha', 'desc')
-            ->paginate(10);
+        $detallePartidos = Partido::query()->when(request('search'), function ($query) {
+                                return $query->where('fecha', 'LIKE', '%' . request('search') . '%');
+                            })->orWhereHas('torneo', function ($queryBuilder) {
+                                $queryBuilder->where('nombre', 'LIKE', '%' . request('search') . '%');
+                            })->where('estado', 'finalizado')->with(['equipoLocal', 'equipoVisitante', 'torneo'])
+                                ->orderBy('fecha', 'desc')->paginate(5)->withQueryString();
+
         return view('admin.detallePartidos.index', compact('detallePartidos'));
     }
 
