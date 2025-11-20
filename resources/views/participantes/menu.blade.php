@@ -8,11 +8,26 @@
 
         <!-- Menú de Navegación Principal -->
         <nav class="hidden md:flex items-center gap-6">
-            <a href=""
-                class="text-gray-300 hover:text-white font-semibold transition-colors">Partidos</a>
             <a href="{{ route('participantes.clasificaciones') }}"
-                class="text-gray-300 hover:text-white font-semibold transition-colors">Clasificación</a>
-            <a href="" class="text-white font-bold border-b-2 border-purple-400 pb-1">Noticias</a>
+                class="hover:text-white font-semibold transition-colors 
+                {{ request()->routeIs('participantes.clasificaciones') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
+                 {{ __('CLASIFICACIONES') }}</a>
+            <a href="{{ route('participantes.equipos') }}"
+                class="text-gray-300 hover:text-white font-semibold transition-colors
+                {{ request()->routeIs('participantes.equipos') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
+                {{ __('EQUIPOS') }}</a>
+            <a href="{{ route('participantes.goleadores') }}"
+                class="text-gray-300 hover:text-white font-semibold transition-colors
+                {{ request()->routeIs('participantes.goleadores') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
+                {{ __('JUGADORES') }}</a>
+            <a href="{{ route('participantes.partidos') }}"
+                class="text-gray-300 hover:text-white font-semibold transition-colors
+                {{ request()->routeIs('participantes.partidos') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
+                {{ __('PARTIDOS') }}</a>
+            <a href="{{ route('participantes.noticias') }}" 
+                class="text-gray-300 hover:text-white font-semibold transition-colors
+                {{ request()->routeIs('participantes.noticias') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
+                {{ __('NOTICIAS') }}</a>
         </nav>
 
         <!-- Perfil de Usuario -->
