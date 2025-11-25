@@ -16,9 +16,14 @@ class Equipo extends Model
         return $this->belongsTo(Torneo::class);
     }
 
-    public function partidos()
+    public function partidosLocal()
     {
-        return $this->hasMany(Partido::class);
+        return $this->hasMany(Partido::class, 'equipo_local_id');
+    }
+
+    public function partidosVisitante()
+    {
+        return $this->hasMany(Partido::class, 'equipo_visitante_id');
     }
 
     // Relación muchos a muchos con usuarios

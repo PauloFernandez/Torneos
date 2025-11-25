@@ -15,11 +15,15 @@
             <a href="{{ route('participantes.equipos') }}"
                 class="text-gray-300 hover:text-white font-semibold transition-colors
                 {{ request()->routeIs('participantes.equipos') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
-                {{ __('EQUIPOS') }}</a>
+                {{ __('EQUIPO') }}</a>
             <a href="{{ route('participantes.goleadores') }}"
                 class="text-gray-300 hover:text-white font-semibold transition-colors
                 {{ request()->routeIs('participantes.goleadores') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
                 {{ __('JUGADORES') }}</a>
+            <a href="{{ route('participantes.asistencias') }}"
+                class="text-gray-300 hover:text-white font-semibold transition-colors
+                {{ request()->routeIs('participantes.asistencias') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">
+                {{ __('ASISTENCIAS') }}</a>
             <a href="{{ route('participantes.partidos') }}"
                 class="text-gray-300 hover:text-white font-semibold transition-colors
                 {{ request()->routeIs('participantes.partidos') ? 'text-white font-bold border-b-2 border-purple-400 pb-1' : 'text-gray-300' }}">

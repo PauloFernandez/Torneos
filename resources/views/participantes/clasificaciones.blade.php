@@ -15,54 +15,50 @@
                         <th class="p-4 text-center">G</th>
                         <th class="p-4 text-center">E</th>
                         <th class="p-4 text-center">P</th>
-                        <th class="p-4 text-center">DG</th>
+                        <th class="p-4 text-center">SG</th>
                         <th class="p-4 text-center font-bold">Pts</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-700/50">
-                    <!-- Fila 1 -->
                     <tr class="hover:bg-purple-600/30 transition-colors duration-200">
-                        <td class="p-4 font-bold">1</td>
-                        <td class="p-4 flex items-center gap-3">
-                            <img src="https://via.placeholder.com/24x24.png?text=ATM" alt="Logo" class="h-6 w-6">
-                            <span class="font-semibold">Atlético de Madrid</span>
-                        </td>
-                        <td class="p-4 text-center">5</td>
-                        <td class="p-4 text-center">4</td>
-                        <td class="p-4 text-center">1</td>
-                        <td class="p-4 text-center">0</td>
-                        <td class="p-4 text-center">+8</td>
-                        <td class="p-4 text-center font-bold text-xl text-white">13</td>
+                    @forelse ($torneos as $torneo)
+                        @foreach ($torneo->equipos as $index => $equipo)
+                            <tr>
+                                <td class="p-4 font-bold text-xl">
+                                    @if($index == 0)
+                                        <span class="text-yellow-400">🥇</span>
+                                    @elseif($index == 1)
+                                        <span class="text-gray-300">🥈</span>
+                                    @elseif($index == 2)
+                                        <span class="text-orange-400">🥉</span>
+                                    @else
+                                        {{ $index + 1 }}
+                                    @endif
+                                </td>
+
+                                <td class="p-4 flex items-center gap-3">
+                                    {{-- Logo --}}
+                                    <img src="{{ asset('img/' . $equipo->file_uri) }}" alt="Logo" class="h-6 w-6">
+                                    <span class="font-semibold">{{ $equipo->nombre }}</span>
+                                </td>
+
+                                <td class="p-4 text-center">{{ $equipo->PJ}}</td>
+                                <td class="p-4 text-center">{{ $equipo->G }}</td>
+                                <td class="p-4 text-center">{{ $equipo->E }}</td>
+                                <td class="p-4 text-center">{{ $equipo->P }}</td>
+                                <td class="p-4 text-center">{{ $equipo->DG }}</td>
+                                <td class="p-4 text-center font-bold text-xl text-white">{{ $equipo->Pts }}</td>
+                            </tr>
+                        @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="8"
+                                class="px-4 py-6 whitespace-nowrap text-sm font-medium text-center">
+                                No se encontraron datos
+                            </td>
+                        </tr>
+                    @endforelse
                     </tr>
-                    <!-- Fila 2 -->
-                    <tr class="hover:bg-purple-600/30 transition-colors duration-200">
-                        <td class="p-4 font-bold">2</td>
-                        <td class="p-4 flex items-center gap-3">
-                            <img src="https://via.placeholder.com/24x24.png?text=FCB" alt="Logo" class="h-6 w-6">
-                            <span class="font-semibold">FC Barcelona</span>
-                        </td>
-                        <td class="p-4 text-center">5</td>
-                        <td class="p-4 text-center">4</td>
-                        <td class="p-4 text-center">0</td>
-                        <td class="p-4 text-center">1</td>
-                        <td class="p-4 text-center">+7</td>
-                        <td class="p-4 text-center font-bold text-xl text-white">12</td>
-                    </tr>
-                    <!-- Fila 3 -->
-                    <tr class="hover:bg-purple-600/30 transition-colors duration-200">
-                        <td class="p-4 font-bold">3</td>
-                        <td class="p-4 flex items-center gap-3">
-                            <img src="https://via.placeholder.com/24x24.png?text=RMA" alt="Logo" class="h-6 w-6">
-                            <span class="font-semibold">Real Madrid</span>
-                        </td>
-                        <td class="p-4 text-center">5</td>
-                        <td class="p-4 text-center">3</td>
-                        <td class="p-4 text-center">1</td>
-                        <td class="p-4 text-center">1</td>
-                        <td class="p-4 text-center">+5</td>
-                        <td class="p-4 text-center font-bold text-xl text-white">10</td>
-                    </tr>
-                    <!-- Puedes añadir más filas aquí -->
                 </tbody>
             </table>
     </main>
