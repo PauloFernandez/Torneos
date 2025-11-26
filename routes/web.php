@@ -13,14 +13,13 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TarjetaController;
 use App\Http\Controllers\Admin\TorneoController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Participante\PerfilController;
 use App\Http\Controllers\Participante\ParticipanteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])->group(function () {
     Route::get('/dashboard', function () {

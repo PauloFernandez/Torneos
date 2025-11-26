@@ -12,58 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500;700&display=swap');
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        .title-font {
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-        }
-
-        .game-card {
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
-        .game-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 255, 255, 0.1), 0 10px 10px -5px rgba(0, 255, 255, 0.04);
-        }
-
-        .glow-effect {
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(0, 255, 255, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
-            }
-        }
-
         .stadium-bg {
-            background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-image: url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -71,7 +23,7 @@
         }
 
         .stadium-bg::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
@@ -80,6 +32,7 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
     </style>
+
 </head>
 
 <body class="antialiased">
@@ -107,15 +60,15 @@
             <div class="flex items-center justify-center h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img class="h-10" src="/img/logoTorneo.png" alt="Torneos Cup Logo">
+                        <img class="h-10" src=" {{ asset('img/logos/logoTorneo.png') }}" alt="Torneos Cup Logo">
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#" class="text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
-                            <a href="#" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">Torneos</a>
-                            <a href="#" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">Clasificación</a>
-                            <a href="#" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">Premios</a>
-                            <a href="#" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">Reglas</a>
+                            <a href="#" class="text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">INICIO</a>
+                            <a href="#Experiencia" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">EXPERIENCIA</a>
+                            <a href="#Torneos" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">TORNEOS</a>
+                            <a href="#Regla" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">REGLAS</a>
+                            <a href="#Registrarse" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">REGISTRATE</a>
                         </div>
                     </div>
                 </div>
@@ -130,11 +83,11 @@
             </div>
             <!-- Mobile menu -->
             <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-                <a href="#" class="block text-cyan-400 py-2 text-sm font-medium">Inicio</a>
-                <a href="#" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">Torneos</a>
-                <a href="#" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">Clasificación</a>
-                <a href="#" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">Premios</a>
-                <a href="#" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">Reglas</a>
+                <a href="#" class="block text-cyan-400 py-2 text-sm font-medium">INICIO</a>
+                <a href="#Experiencia" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">EXPERIENCIA</a>
+                <a href="#Torneos" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">TORNEOS</a>
+                <a href="#Regla" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">REGLAS</a>
+                <a href="#Registrarse" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">REGISTRATE</a>
                 @auth
                 <a href="{{ url('/dashboard') }}" class="block text-gray-300 hover:text-cyan-400 py-2 text-sm font-medium">Dashboard</a>
                 @else
@@ -169,7 +122,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="bg-black py-16">
+    <section id="Experiencia" class="bg-black py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="title-font text-3xl md:text-4xl font-bold text-white mb-2">
@@ -239,7 +192,7 @@
     </section>
 
     <!-- Active Tournaments -->
-    <section class="bg-gradient-to-b from-gray-900 to-black py-16">
+    <section id="Torneos" class="bg-gradient-to-b from-gray-900 to-black py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="title-font text-3xl md:text-4xl font-bold text-white mb-2">
@@ -251,10 +204,40 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Tournament 1 -->
+                <!-- Tournament -->
+                @forelse ($torneos as $torneo)
                 <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/50">
                     <div class="relative">
-                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Champions League Tournament">
+                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="League Tournament">
+                        <div class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            <i class="fas fa-users mr-1"></i> {{ $torneo->equipos_count }}/{{ $torneo->cantidad_equipos }} Equipos
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">{{ $torneo->nombre }}</h3>
+                            <span class="bg-gray-800 text-cyan-400 text-xs font-medium px-2 py-1 rounded">{{ $torneo->categoria }}</span>
+                        </div>
+                        <div class="mt-4 flex items-center text-gray-400 text-sm">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>Incicia: {{ $torneo->fecha_inicio->format('d/m/Y') }} - Finaliza: {{ $torneo->fecha_fin->format('d/m/Y') }}</span>
+                        </div>
+                        <div class="mt-2 flex items-center text-gray-400 text-sm">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>Premio: $ {{ $torneo->premio }}</span>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
+                            <span class="text-cyan-400 font-medium">Inscripción: $ {{ $torneo->inscripcion }}</span>
+                            <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
+                                Unirse
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                    <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/50">
+                    <div class="relative">
+                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="World Cup Tournament">
                         <div class="absolute top-4 right-4 bg-cyan-600 text-white text-xs font-bold px-2 py-1 rounded">
                             <i class="fas fa-users mr-1"></i> 12/25 Equipos
                         </div>
@@ -280,66 +263,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Tournament 2 -->
-                <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/50">
-                    <div class="relative">
-                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="World Cup Tournament">
-                        <div class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded">
-                            <i class="fas fa-users mr-1"></i> 21/24 Equipos
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">Copa Mundial</h3>
-                            <span class="bg-gray-800 text-cyan-400 text-xs font-medium px-2 py-1 rounded">Femenino</span>
-                        </div>
-                        <div class="mt-4 flex items-center text-gray-400 text-sm">
-                            <i class="fas fa-calendar-day mr-2"></i>
-                            <span>Incicia: 25/07 - Finaliza: 25/08</span>
-                        </div>
-                        <div class="mt-2 flex items-center text-gray-400 text-sm">
-                            <i class="fas fa-trophy mr-2"></i>
-                            <span>Premio: $ 35,000</span>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
-                            <span class="text-cyan-400 font-medium">Inscripción: $ 3,000</span>
-                            <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
-                                Unirse
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tournament 3 -->
-                <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/50">
-                    <div class="relative">
-                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Premier League Tournament">
-                        <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
-                            <i class="fas fa-users mr-1"></i> 12/12 Equipos
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">Premier League Elite</h3>
-                            <span class="bg-gray-800 text-cyan-400 text-xs font-medium px-2 py-1 rounded">Adolecentes</span>
-                        </div>
-                        <div class="mt-4 flex items-center text-gray-400 text-sm">
-                            <i class="fas fa-calendar-day mr-2"></i>
-                            <span>Liga de 4 semanas</span>
-                        </div>
-                        <div class="mt-2 flex items-center text-gray-400 text-sm">
-                            <i class="fas fa-trophy mr-2"></i>
-                            <span>Premio: Mando DualSense Edición Especial</span>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
-                            <span class="text-cyan-400 font-medium">Inscripción: $ 1,000</span>
-                            <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
-                                Unirse
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
 
             <div class="mt-12 text-center">
@@ -351,7 +275,7 @@
     </section>
 
     <!-- How It Works -->
-    <section class="bg-black py-16">
+    <section id="Regla" class="bg-black py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center mb-12">
                 <h2 class="title-font text-3xl md:text-4xl font-bold text-white mb-2">
@@ -531,13 +455,13 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="bg-cyan-900/20 py-16">
+    <section id="Registrarse" class="bg-gray-900 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="title-font text-3xl md:text-4xl font-bold text-white mb-6">
                     ¿LISTO PARA <span class="text-cyan-400">COMPETIR?</span>
                 </h2>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
                     Regístra a tu equipo ahora
                 </p>
                 <div class="mt-10">
@@ -609,7 +533,7 @@
             </div>
             <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center">
-                    <img class="h-7 md:h-9" src="/img/logos/PauDev.png" alt="Logo de PauDev - Desarrollador Web">
+                    <img class="h-7 md:h-9" src="{{ asset('img/logos/PauDev.png') }}" alt="Logo de PauDev - Desarrollador Web">
                     <span class="ml-2 text-white font-medium">Desarrollador Web PauDev</span>
                 </div>
                 <div class="mt-4 md:mt-0">
@@ -665,7 +589,6 @@
         });
     </script>
 </body>
-
 </html>
 </body>
 
