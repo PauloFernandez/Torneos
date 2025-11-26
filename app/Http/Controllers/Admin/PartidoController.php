@@ -18,14 +18,26 @@ class PartidoController extends Controller
 {
     public function index(): View
     {
-        $partidos = Partido::query()->when(request('search'), function ($query) {
-                        return $query->where('fecha', 'LIKE', '%' . request('search') . '%')
-                                     ->orWhere('estado', 'LIKE', '%' . request('search') . '%');
-                    })->orWhereHas('torneo', function ($queryBuilder) {
-                        $queryBuilder->where('nombre', 'LIKE', '%' . request('search') . '%');
-                    })->where('estado', '!=', 'finalizado')
-                      ->with(['arbitro', 'cancha', 'torneo', 'equipoLocal', 'equipoVisitante'])
-                      ->orderBy('fecha', 'desc')->paginate(5)->withQueryString();
+        $search = request('search');
+
+        $partidos = Partido::query()
+            ->when($search, function ($query) use ($search) {
+                return $query->where('estado', 'LIKE', '%' . $search . '%')
+                    ->orWhereHas('equipoLocal', function ($q) use ($search) {
+                        $q->where('nombre', 'LIKE', '%' . $search . '%');
+                    })
+                    ->orWhereHas('equipoVisitante', function ($q) use ($search) {
+                        $q->where('nombre', 'LIKE', '%' . $search . '%');
+                    })
+                    ->orWhereHas('torneo', function ($q) use ($search) {
+                        $q->where('nombre', 'LIKE', '%' . $search . '%');
+                    });
+            })
+            ->where('estado', '!=', 'finalizado')
+            ->with(['arbitro', 'cancha', 'torneo', 'equipoLocal', 'equipoVisitante'])
+            ->orderBy('fecha', 'desc')
+            ->paginate(5)
+            ->withQueryString();
 
         return view('admin.partidos.index', compact('partidos'));
     }

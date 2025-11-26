@@ -14,12 +14,25 @@ class DetallePartidoController extends Controller
 {
     public function index(): View
     {
-        $detallePartidos = Partido::query()->when(request('search'), function ($query) {
-                                return $query->where('fecha', 'LIKE', '%' . request('search') . '%');
-                            })->orWhereHas('torneo', function ($queryBuilder) {
-                                $queryBuilder->where('nombre', 'LIKE', '%' . request('search') . '%');
-                            })->where('estado', 'finalizado')->with(['equipoLocal', 'equipoVisitante', 'torneo'])
-                                ->orderBy('fecha', 'desc')->paginate(5)->withQueryString();
+        $search = request('search');
+
+        $detallePartidos = Partido::query()
+            ->when($search, function ($query) use ($search) {
+                return $query->orWhereHas('equipoLocal', function ($q) use ($search) {
+                        $q->where('nombre', 'LIKE', '%' . $search . '%');
+                    })
+                    ->orWhereHas('equipoVisitante', function ($q) use ($search) {
+                        $q->where('nombre', 'LIKE', '%' . $search . '%');
+                    })
+                    ->orWhereHas('torneo', function ($q) use ($search) {
+                        $q->where('nombre', 'LIKE', '%' . $search . '%');
+                    });
+            })
+            ->where('estado', 'finalizado')
+            ->with(['equipoLocal', 'equipoVisitante', 'torneo'])
+            ->orderBy('fecha', 'desc')
+            ->paginate(5)
+            ->withQueryString();
 
         return view('admin.detallePartidos.index', compact('detallePartidos'));
     }
