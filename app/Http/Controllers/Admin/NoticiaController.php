@@ -12,10 +12,17 @@ class NoticiaController extends Controller
 {
     public function index(): View
     {
-        $noticias = Noticia::query()->with('user')->when(request('search'), function ($query) {
-            return $query->where('titulo', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('fecha_publicado', 'LIKE','%'. request('search') .'%');
-        })->orderBy('fecha_publicado', 'desc')->paginate(10)->withQueryString();
+        $noticias = Noticia::query()
+            ->with('user')
+            ->when(request('search'), function ($query) {
+                return $query->where('titulo', 'LIKE', '%' . request('search') . '%')
+                    ->orWhereHas('user', function ($q) {
+                        $q->where('name', 'LIKE', '%' . request('search') . '%');
+                    });
+            })
+            ->orderBy('fecha_publicado', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('admin.noticias.index', compact('noticias'));
     }

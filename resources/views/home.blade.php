@@ -228,9 +228,9 @@
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
                             <span class="text-cyan-400 font-medium">Inscripción: $ {{ $torneo->inscripcion }}</span>
-                            <button class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
-                                Unirse
-                            </button>
+                            <a href="" class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
+                               <i class="fa fa-download"></i> Reglamento
+                            </a>
                         </div>
                     </div>
                 </div>
