@@ -228,7 +228,7 @@
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
                             <span class="text-cyan-400 font-medium">Inscripción: $ {{ $torneo->inscripcion }}</span>
-                            <a href="" class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
+                            <a href="{{ route('pdf.infoTorneo', $torneo->id) }}" class="glow-effect bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm font-medium">
                                <i class="fa fa-download"></i> Reglamento
                             </a>
                         </div>
@@ -288,11 +288,6 @@
 
             <div class="mt-10">
                 <div class="relative">
-                    <!-- Line -->
-                    <div class="hidden md:block absolute inset-0 flex items-center justify-center">
-                        <div class="h-full w-1 bg-gradient-to-b from-cyan-500 to-cyan-900"></div>
-                    </div>
-
                     <!-- Steps -->
                     <div class="relative space-y-10 md:space-y-0">
                         <!-- Step 1 -->
@@ -303,9 +298,9 @@
                                 </div>
                             </div>
                             <div class="mt-4 md:mt-0 md:ml-6">
-                                <h3 class="text-lg font-medium text-white">Regístrate</h3>
+                                <h3 class="text-lg font-medium text-white">Elige tu Torneo</h3>
                                 <p class="mt-2 text-base text-gray-300">
-                                    Crea tu cuenta vinculando tu equipo.
+                                   Selecciona entre torneos, ligas o copas eliminatorias según tu nivel y descarga el reglamento. 
                                 </p>
                             </div>
                         </div>
@@ -318,9 +313,9 @@
                                 </div>
                             </div>
                             <div class="mt-4 md:mt-0 md:ml-6">
-                                <h3 class="text-lg font-medium text-white">Elige tu Torneo</h3>
+                                <h3 class="text-lg font-medium text-white">Regístrate</h3>
                                 <p class="mt-2 text-base text-gray-300">
-                                    Selecciona entre torneos, ligas o copas eliminatorias según tu nivel.
+                                    Ve al boton "Regístrar Equipo" y sigue las indicaciones
                                 </p>
                             </div>
                         </div>
@@ -465,7 +460,7 @@
                     Regístra a tu equipo ahora
                 </p>
                 <div class="mt-10">
-                    <a href="#" class="glow-effect inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700">
+                    <a href="{{ route('inscripcion') }}" class="glow-effect inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700">
                         <i class="fas fa-user-plus mr-2"></i> Regístrar Equipo
                     </a>
                 </div>

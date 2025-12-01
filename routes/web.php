@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TarjetaController;
 use App\Http\Controllers\Admin\TorneoController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\csv\CSV_JugadoresController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Participante\PerfilController;
 use App\Http\Controllers\Participante\ParticipanteController;
@@ -20,6 +21,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('pdf/infoTorneo/{id}', [HomeController::class, 'infoTorneo'])->name('pdf.infoTorneo');
+Route::get('/inscripcion', [HomeController::class, 'inscripcion'])->name('inscripcion');
+Route::get('export', [CSV_JugadoresController::class, 'export'])->name('export');
 
 Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])->group(function () {
     Route::get('/dashboard', function () {
@@ -38,6 +42,7 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/usuarios/import', [CSV_JugadoresController::class, 'import'])->name('usuarios.import');
     Route::resource('/usuarios', UserController::class)->names('usuarios');
     Route::resource('/noticias', NoticiaController::class)->names('noticias');
     Route::resource('/torneos', TorneoController::class)->names('torneos');
@@ -45,16 +50,16 @@ Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])-
     Route::resource('/canchas', CanchaController::class)->names('canchas')->except('show');
     Route::resource('/equipos', EquipoController::class)->names('equipos')->except('show');
     Route::resource('/tarjetas', TarjetaController::class)->names('tarjetas')->except('show');
-    //rutas de partidos
+    
+    //Rutas de partidos
     Route::resource('/partidos', PartidoController::class)->names('partidos')->except('show');
     Route::get('admin/partidos/{partido}/get-details', [PartidoController::class, 'getDetails'])->name('partidos.get-details');
     Route::put('admin/partidos/{partido}/update-results', [PartidoController::class, 'updateResults'])->name('partidos.update-results');
 
     //Rutas de detalle de partidos
     Route::resource('/detallePartidos', DetallePartidoController::class)->names('detallePartidos')->only(['index', 'edit', 'update', 'show', 'destroy']);
-    //Route::get('admin/detallePartidos', [DetallePartidoController::class, 'index'])->name('detallePartidos.index');
     
-    //Modulo Jugador
+    //Rutas Jugador
     Route::get('admin/jugadores', [EquipoUserController::class, 'index'])->name('jugadores.index');
     Route::get('admin/jugadores/create', [EquipoUserController::class, 'create'])->name('jugadores.create');
     Route::post('admin/jugadores', [EquipoUserController::class, 'store'])->name('jugadores.store');
