@@ -36,7 +36,7 @@
                         <td class="p-4">
                             <div class="flex items-center gap-3">
                                 @if($jugador->file_uri)
-                                    <img src="{{ asset('storage/' . $jugador->file_uri) }}" 
+                                    <img src="{{ asset('img/' . $jugador->file_uri) }}" 
                                          alt="{{ $jugador->name }}"
                                          class="w-10 h-10 rounded-full object-cover border-2 border-purple-500">
                                 @else

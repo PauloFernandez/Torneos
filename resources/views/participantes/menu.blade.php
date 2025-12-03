@@ -1,11 +1,8 @@
 <header class="glassmorphism sticky top-0 z-50 shadow-lg">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <!-- Logo / Título del Torneo -->
-        <a href="index.html"
-            class="text-2xl font-black uppercase tracking-wider text-white hover:text-purple-300 transition-colors">
-            Pro Series
-        </a>
-
+        <x-application-logo class="h-16 fill-current text-gray-300" />
+        
         <!-- Menú de Navegación Principal -->
         <nav class="hidden md:flex items-center gap-6">
             <a href="{{ route('participantes.clasificaciones') }}"
