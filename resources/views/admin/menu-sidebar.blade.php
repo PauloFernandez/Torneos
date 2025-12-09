@@ -47,7 +47,7 @@
                 @endphp
                 <div x-data="{ open: {{ request()->routeIs(['partidos.*', 'detallePartidos.*']) ? 'true' : 'false' }} }" class="relative">
                     <button @click="open = !open"
-                            class="block py-2 px-3 hover:bg-gray-600 rounded-md w-full text-left flex justify-between items-center {{ $partidosActive }}">
+                            class="flex py-2 px-3 hover:bg-gray-600 rounded-md w-full text-left justify-between items-center {{ $partidosActive }}">
                         <span class="flex items-center">
                             <i class="fas fa-calendar-alt mr-2"></i> Partidos
                         </span>
@@ -75,13 +75,6 @@
                     <i class="fas fa-newspaper mr-2"></i> Noticias
                 </a>
             </div>
-            <div class="mt-4">
-                <p class="text-xs uppercase text-gray-400 mb-2">Gestión de Pagos</p>
-                <a href="#"
-                   class="block py-2 px-3 hover:bg-gray-600 rounded-md"> {{-- TODO: Crear la ruta de facturación --}}
-                    <i class="fas fa-file-invoice-dollar mr-2"></i>Facturación
-                </a>
-            </div>
 
             <div class="mt-4">
                 <p class="text-xs uppercase text-gray-400 mb-2">Configuración</p>
@@ -96,7 +89,7 @@
                 @endphp
                 <div x-data="{ open: {{ request()->routeIs('admin.sistema.*') ? 'true' : 'false' }} }" class="relative">
                     <button @click="open = !open"
-                            class="block py-2 px-3 hover:bg-gray-600 rounded-md w-full text-left flex justify-between items-center {{ $systemSettingsActive }}">
+                            class="py-2 px-3 hover:bg-gray-600 rounded-md w-full text-left flex justify-between items-center {{ $systemSettingsActive }}">
                         <span class="flex items-center">
                             <i class="fas fa-cog mr-2"></i> Configuración
                         </span>

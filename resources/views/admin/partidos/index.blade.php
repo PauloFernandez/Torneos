@@ -61,8 +61,8 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                     <span class="font-semibold 
                         @if($partido->estado == 'programado') text-blue-800
-                        @elseif($partido->estado == 'suspendido') text-yellow-800
-                        @else text-red-800 @endif">
+                        @elseif($partido->estado == 'suspendido') text-yellow-400
+                        @else text-red-700 @endif">
                         {{ ucfirst($partido->estado) }}
                     </span>
                  </td>

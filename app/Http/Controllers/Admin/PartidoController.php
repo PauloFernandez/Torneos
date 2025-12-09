@@ -11,7 +11,6 @@ use App\Models\Equipo;
 use App\Models\Partido;
 use App\Models\Torneo;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PartidoController extends Controller
@@ -44,10 +43,10 @@ class PartidoController extends Controller
 
     public function create(): View
     {
-        $torneos = Torneo::all(); // Obtener todos los torneos
+        $torneos = Torneo::all();
         $arbitros = Arbitro::all();
         $canchas = Cancha::all();
-        $equipos = Equipo::all(); // Obtener TODOS los equipos para que JavaScript los filtre
+        $equipos = Equipo::all();
 
         return view('admin.partidos.create', compact('torneos', 'arbitros', 'canchas', 'equipos'));
     }
@@ -63,7 +62,7 @@ class PartidoController extends Controller
         $torneos = Torneo::all();
         $arbitros = Arbitro::all();
         $canchas = Cancha::all();
-        $equipos = Equipo::all(); // Obtener TODOS los equipos para que JavaScript los filtre
+        $equipos = Equipo::all();
 
         return view('admin.partidos.edit', compact('partido', 'torneos', 'arbitros', 'canchas', 'equipos'));
     }

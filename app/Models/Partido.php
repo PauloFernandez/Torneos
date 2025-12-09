@@ -43,14 +43,4 @@ class Partido extends Model
     {
         return $this->hasMany(DetallePartido::class);
     }
-
-    // Para obtener directamente los jugadores que participaron para obtener los datos de la tabla pivote
-    /*
-    public function jugadores()
-    {
-        return $this->belongsToMany(User::class, 'detalle_partidos', 'partido_id', 'jugador_id')
-                ->withPivot('equipo_id', 'goles', 'asistencias', 'tarjetas_amarillas', 'tarjetas_rojas', 'tipo_participacion')
-                ->withTimestamps();
-    }
-                */
 }

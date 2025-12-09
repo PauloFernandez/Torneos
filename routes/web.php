@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArbitroController;
 use App\Http\Controllers\Admin\AsignarPermisoController;
 use App\Http\Controllers\Admin\CanchaController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DetallePartidoController;
 use App\Http\Controllers\Admin\EquipoController;
 use App\Http\Controllers\Admin\EquipoUserController;
@@ -26,9 +27,11 @@ Route::get('/inscripcion', [HomeController::class, 'inscripcion'])->name('inscri
 Route::get('export', [CSV_JugadoresController::class, 'export'])->name('export');
 
 Route::middleware(['auth', 'verified', 'active', 'role:Administrador|Usuario'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+
+    Route::get('/dashboard', [DashboardController::class, 'torneos'])->name('admin.dashboard');
+    Route::get('/dashboard/clasificacionexport', [DashboardController::class, 'exportClasificacionAll'])->name('clasificaciones.export');
+    Route::get('/dashboard/equipoexport', [DashboardController::class, 'exportEquiposAll'])->name('equipos.export');
+    Route::get('/dashboard/golesexport', [DashboardController::class, 'exportGolAsisAll'])->name('golAsist.export');
 
     //Rutas de administrador
     Route::middleware(['role:Administrador'])->prefix('admin')->name('admin.sistema.')->group(function () {

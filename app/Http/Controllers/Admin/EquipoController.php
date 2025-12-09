@@ -8,7 +8,6 @@ use App\Http\Services\GestionImagService;
 use App\Models\Equipo;
 use App\Models\Torneo;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class EquipoController extends Controller
@@ -41,7 +40,7 @@ class EquipoController extends Controller
         return redirect()->route('equipos.index')->with('success', 'Equipo creado exitosamente.');
     }
 
-    public function edit(Equipo $equipo)
+    public function edit(Equipo $equipo): View
     {
         $torneos = Torneo::orderBy('nombre')->get();
         return view('admin.equipos.edit', compact('equipo', 'torneos'));

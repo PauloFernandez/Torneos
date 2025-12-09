@@ -37,12 +37,4 @@ class DetallePartido extends Model
     {
         return $this->belongsTo(Equipo::class);
     }
-
-    // Relación con las sanciones generadas
-    /*
-    public function sanciones()
-    {
-        return $this->hasMany(Sancion::class, 'partido_jugador_id');
-    }
-    */
 }

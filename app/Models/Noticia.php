@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use Illuminate\Support\Carbon; // Asegúrate de importar Carbon
+use Illuminate\Support\Carbon;
 
 class Noticia extends Model
 {

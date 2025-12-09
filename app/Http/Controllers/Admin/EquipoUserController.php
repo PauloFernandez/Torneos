@@ -31,7 +31,7 @@ class EquipoUserController extends Controller
             ->join('equipo_user', 'users.id', '=', 'equipo_user.user_id')
             ->join('equipos', 'equipo_user.equipo_id', '=', 'equipos.id')
             ->orderBy('equipos.nombre')
-            ->orderBy('users.apellido') // Orden secundario por apellido
+            ->orderBy('users.apellido')
             ->select('users.*') // Importante: solo seleccionar columnas de users
             ->paginate(5)
             ->withQueryString();

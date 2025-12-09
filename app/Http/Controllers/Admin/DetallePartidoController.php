@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DetallePartidoRequest;
-use App\Models\DetallePartido;
 use App\Models\Partido;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +45,7 @@ class DetallePartidoController extends Controller
     public function edit(Partido $detallePartido): View
     {
         // Obtener jugadores de ambos equipos
-        $jugadoresLocal = $detallePartido->equipoLocal->usuarios() // usuarios() sale del modelo Equipo
+        $jugadoresLocal = $detallePartido->equipoLocal->usuarios()
             ->withPivot('posicion', 'num_camiseta')
             ->get();
 
@@ -82,8 +81,7 @@ class DetallePartidoController extends Controller
                     'tarjetas_rojas' => $jugador['tarjetas_rojas'] ?? 0,
                     'tipo_participacion' => $jugador['tipo_participacion'],
                 ]);
-                // Generar sanciones si hay tarjetas
-                // $this->generarSanciones($detalleJugador, $jugador);
+                
             }
         });
 
@@ -97,35 +95,4 @@ class DetallePartidoController extends Controller
         $detallePartido->delete();
         return back()->with('success', 'Partido eliminado exitosamente.');
     }
-
-    /*
-    private function generarSanciones($detalleJugador, $data)
-    {
-        // Obtener montos desde configuración o tabla tarjetas
-        $montoAmarilla = 50;  // Puedes leerlo de config o DB
-        $montoRoja = 200;
-
-        if ($data['tarjetas_amarillas'] > 0) {
-            Sancion::create([
-                'partido_jugador_id' => $detalleJugador->id,
-                'jugador_id' => $data['jugador_id'],
-                'tipo_tarjeta' => 'amarilla',
-                'cantidad' => $data['tarjetas_amarillas'],
-                'monto' => $montoAmarilla * $data['tarjetas_amarillas'], // $50 por amarilla
-                'fecha_sancion' => $detalleJugador->partido->fecha,
-            ]);
-        }
-
-        if ($data['tarjetas_rojas'] > 0) {
-            Sancion::create([
-                'partido_jugador_id' => $detalleJugador->id,
-                'jugador_id' => $data['jugador_id'],
-                'tipo_tarjeta' => 'roja',
-                'cantidad' => 1,
-                'monto' => $montoRoja,
-                'fecha_sancion' => $detalleJugador->partido->fecha,
-            ]);
-        }
-    }
-    */
 }

@@ -7,7 +7,6 @@ use App\Models\Equipo;
 use App\Models\Noticia;
 use App\Models\Torneo;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class ParticipanteController extends Controller
 {
@@ -41,7 +40,7 @@ class ParticipanteController extends Controller
             ])
             ->get();
 
-        // 💡 Procesar estadísticas por equipo
+        // Procesar estadísticas por equipo
         foreach ($torneos as $torneo) {
             foreach ($torneo->equipos as $equipo) {
 
@@ -52,7 +51,7 @@ class ParticipanteController extends Controller
                 // Inicializar estadísticas
                 $PJ = $G = $E = $P = $GF = $GC = 0;
 
-                // 🟦 Partidos como LOCAL
+                // Partidos como LOCAL
                 foreach ($local as $p) {
                     $PJ++;
                     $GF += $p->goles_local;
@@ -63,7 +62,7 @@ class ParticipanteController extends Controller
                     else $P++;
                 }
 
-                // 🟥 Partidos como VISITANTE
+                // Partidos como VISITANTE
                 foreach ($visit as $p) {
                     $PJ++;
                     $GF += $p->goles_visitante;
@@ -86,11 +85,11 @@ class ParticipanteController extends Controller
                 $equipo->Pts = ($G * 3) + ($E * 1);
             }
 
-            // 🔥 Ordenar equipos dentro del torneo
+            // Ordenar equipos dentro del torneo
             $torneo->equipos = $torneo->equipos->sortByDesc('Pts')
                 ->sortByDesc('DG')
                 ->sortByDesc('GF')
-                ->values(); // reindex
+                ->values();
         }
 
         return view('participantes.clasificaciones', compact('torneos'));
@@ -111,17 +110,17 @@ class ParticipanteController extends Controller
 
         // Definir orden de posiciones (de atrás hacia adelante)
         $ordenPosiciones = [
-            'POR' => 1,  // Portero
-            'DFC' => 2,  // Defensa Central
-            'LD' => 3,   // Lateral Derecho
-            'LI' => 4,   // Lateral Izquierdo
-            'MCD' => 5,  // Mediocampista Defensivo
-            'MC' => 6,   // Mediocampista Central
-            'MCO' => 7,  // Mediocampista Ofensivo
-            'ED' => 8,   // Extremo Derecho
-            'EI' => 9,   // Extremo Izquierdo
-            'SP' => 10,  // Segundo Puntero
-            'DC' => 11,  // Delantero Centro
+            'POR' => 1,
+            'DFC' => 2,
+            'LD' => 3,
+            'LI' => 4,
+            'MCD' => 5,
+            'MC' => 6,
+            'MCO' => 7,
+            'ED' => 8,
+            'EI' => 9,
+            'SP' => 10,
+            'DC' => 11,
         ];
 
         // Calcular estadísticas de todos los jugadores de todos los equipos en 1 query
@@ -158,8 +157,7 @@ class ParticipanteController extends Controller
                 return $ordenPosiciones[$jugador->pivot->posicion] ?? 999;
             })->values();
         }
-        //Mostrar detalle del equipo
-        //dd($equipos);
+
         return view('participantes.equipos', compact('equipos'));
     }
 
@@ -182,7 +180,7 @@ class ParticipanteController extends Controller
                 'partidos.equipoLocal',
                 'partidos.equipoVisitante',
                 'partidos.cancha',
-                'partidos.arbitro' // Solo si lo necesitas
+                'partidos.arbitro'
             ])
             ->get();
 

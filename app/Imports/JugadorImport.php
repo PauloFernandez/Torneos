@@ -50,23 +50,23 @@ class JugadorImport implements ToCollection, WithHeadingRow, WithValidation, Wit
             'documento' => [
                 'bail',
                 'required',
-                'regex:/^[0-9\s]+$/', // 'regex' esta regla valida los caracteres permitidos en este caso acepta solo numeros
+                'regex:/^[0-9\s]+$/',
                 'min:8',
                 'max:8',
-                Rule::unique('users') // Rule::unique valida que el campo sea unico, el 'ignore' sirve para cuando se esta editando
+                Rule::unique('users')
             ],
             'name' => [
                 'bail',
                 'required',
                 'max:50',
-                'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/' // 'regex' esta regla valida los caracteres permitidos en este caso no acepta numeros
+                'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/'
             ],
             'apellido' => ['bail', 'required', 'max:50', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/'],
             'fecha_nacimiento' => [
                 'bail',
                 'required',
                 'date',
-                'before:' . now()->subYears(12)->format('Y-m-d'), // 'before' valida que la fecha sea anterior a "xx" años desde hoy, con la instruccion now()->subYears() indicamos la cantidad de años
+                'before:' . now()->subYears(12)->format('Y-m-d'),
                 'after:' . now()->subYears(85)->format('Y-m-d')
             ],
             'direccion' => ['bail', 'required'],

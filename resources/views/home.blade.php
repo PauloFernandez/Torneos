@@ -113,7 +113,7 @@
                     <a href="#" class="pulse-animation inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700">
                         <i class="fas fa-list-ol mr-2"></i> Ver torneos activos
                     </a>
-                    <a href="#" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-cyan-400 bg-cyan-900/30 hover:bg-cyan-900/50 border-cyan-400/20">
+                    <a href="#" class="inline-flex items-center px-8 py-4 text-base font-medium rounded-md text-cyan-400 bg-cyan-900/30 hover:bg-cyan-900/50 border-cyan-400/20">
                         <i class="fas fa-trophy mr-2"></i> Premios
                     </a>
                 </div>

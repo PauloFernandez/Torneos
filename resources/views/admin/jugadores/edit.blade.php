@@ -11,7 +11,7 @@
             <div>
                 <label for="equipo_id" class="block text-sm font-medium text-gray-700 mb-1">Equipo</label>
                 <select name="equipo_id" id="equipo_id"
-                        class="block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                        class="block w-full pl-3 pr-10 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                                 form-select @error('equipo_id') border-red-500 @enderror">
                     <option value="">Seleccionar equipo</option>
                     @foreach ($equipos as $equipoOption)
@@ -46,7 +46,7 @@
                     <!-- Posición -->
                     <div>
                         <label for="posicion" class="block text-sm font-medium text-gray-700 mb-2">Posición</label>
-                        <select name="posicion" id="posicion" class="block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                        <select name="posicion" id="posicion" class="block w-full pl-3 pr-10 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                                    @error('posicion') border-red-500 @enderror">
                             <option value="POR" {{ (old('posicion', $pivotData->pivot->posicion) == 'POR') ? 'selected' : '' }}>Portero (POR)</option>
                             <option value="DFC" {{ (old('posicion', $pivotData->pivot->posicion) == 'DFC') ? 'selected' : '' }}>Defensa Central (DFC)</option>

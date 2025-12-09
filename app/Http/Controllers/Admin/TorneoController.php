@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TorneoRequest;
 use App\Models\Torneo;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -43,7 +42,7 @@ class TorneoController extends Controller
         return view('admin.torneos.edit', compact('torneo'));
     }
 
-    public function update(Request $request, Torneo $torneo)
+    public function update(TorneoRequest $request, Torneo $torneo): RedirectResponse
     {
         $data = $request->all();
         $data['estado'] = $request->has('estado') ? 1 : 0;

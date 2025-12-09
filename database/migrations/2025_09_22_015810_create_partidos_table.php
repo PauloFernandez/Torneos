@@ -37,9 +37,7 @@ public function up(): void
             ['torneo_id', 'equipo_local_id', 'equipo_visitante_id', 'fecha', 'hora'],
             'partidos_unique_key'
         );
-        // Para asegurar que los equipos no jueguen dos veces en el mismo orden a la misma hora en el mismo torneo.
-        // Si necesitas que no puedan jugar el mismo partido invirtiendo el orden de local/visitante,
-        // tendrías que manejarlo a nivel de aplicación o con una restricción más compleja.
+
     });
 }
 

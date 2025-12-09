@@ -5,7 +5,6 @@ namespace App\Http\Controllers\csv;
 use App\Http\Controllers\Controller;
 use App\Exports\JugadoresExport;
 use App\Imports\JugadorImport;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 

@@ -3,11 +3,12 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-blue-100 rounded-lg p-4">
+            @foreach ($data as $item)
+                <div class="bg-blue-100 rounded-lg p-4">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm text-blue-800">Equipos registrados</p>
-                        <p class="text-2xl font-bold text-blue-900">12</p>
+                        <p class="text-2xl font-bold text-blue-900">{{ $item->equipos }}</p>
                     </div>
                     <i class="fas fa-users text-blue-600 text-2xl"></i>
                 </div>
@@ -17,7 +18,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm text-green-800">Jugadores registrados</p>
-                        <p class="text-2xl font-bold text-green-900">180</p>
+                        <p class="text-2xl font-bold text-green-900">{{ $item->jugadores }}</p>
                     </div>
                     <i class="fas fa-user text-green-600 text-2xl"></i>
                 </div>
@@ -27,7 +28,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm text-yellow-800">Partidos jugados</p>
-                        <p class="text-2xl font-bold text-yellow-900">45</p>
+                        <p class="text-2xl font-bold text-yellow-900">{{ $item->jugados }}</p>
                     </div>
                     <i class="fas fa-calendar-alt text-yellow-600 text-2xl"></i>
                 </div>
@@ -36,73 +37,13 @@
             <div class="bg-purple-100 rounded-lg p-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-sm text-purple-800">Torneos Activos</p>
-                        <p class="text-2xl font-bold text-purple-900">8</p>
+                        <p class="text-sm text-purple-800">Torneos Creados</p>
+                        <p class="text-2xl font-bold text-purple-900">{{ $item->torneos }}</p>
                     </div>
                     <i class="fas fa-trophy text-purple-600 text-2xl"></i>
                 </div>
             </div>
-        </div>
-
-        <!-- Tabla de Posicion de equipos por torneo, tengo que agregar un buscador para que seleccione un torneo y traiga solo la tabla de posicion de ese torneo-->
-        <div class="mb-8">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Tabla de Posición</h2>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pos</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipo</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PJ</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">G</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">E</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">P</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DG</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pts</th>
-                    </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Atlético de Madrid</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">+4</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">7</td>
-                        </tr>
-                        <!-- More rows... -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Tabla de jugadores por torneo y por equipo, tengo que agregar un buscador para que seleccione un equipo del torneo que se sellecciono arriba y traiga solo la tabla de los jugadores de ese equipo-->
-        <div class="mb-8">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Tabla de Jugadores</h2>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pos</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipo</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jugador</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Goles</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asist.</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Manchester City</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Roberto Martínez</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            @endforeach 
         </div>
 
         <!-- Quick Actions -->
@@ -128,14 +69,14 @@
             <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-3">Reportes</h3>
                 <div class="space-y-2">
-                    <a href="#" class="block py-2 px-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100">
+                    <a href="{{ route('clasificaciones.export') }}" class="block py-2 px-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100">
                         <i class="fas fa-file-alt mr-2"></i> Reporte de Clasificación
                     </a>
-                    <a href="#" class="block py-2 px-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100">
+                    <a href="{{ route('golAsist.export') }}" class="block py-2 px-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100">
                         <i class="fas fa-file-alt mr-2"></i> Reporte de Jugadores
                     </a>
-                    <a href="#" class="block py-2 px-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100">
-                        <i class="fas fa-file-alt mr-2"></i> Reporte de Partidos
+                    <a href="{{ route('equipos.export') }}" class="block py-2 px-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100">
+                        <i class="fas fa-file-alt mr-2"></i> Reporte de Equipos
                     </a>
                 </div>
             </div>
