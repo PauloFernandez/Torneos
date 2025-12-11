@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\WelcomeEmailEvent;
 use App\Models\User;
 use App\Http\Services\GestionImagService;
 use App\Http\Controllers\Controller;
@@ -54,6 +55,8 @@ class UserController extends Controller
         } else {
             $user->assignRole(['jugador']);
         }
+
+        event(new WelcomeEmailEvent($user));
 
         $this->gestionImag->storage($request, $user); //llama al servicio para gestionar la carga de la foto
 

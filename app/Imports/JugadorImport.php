@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Events\WelcomeEmailEvent;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -30,6 +31,8 @@ class JugadorImport implements ToCollection, WithHeadingRow, WithValidation, Wit
 
             // Asignar rol de jugador
             $user->assignRole('jugador');
+
+            //event(new WelcomeEmailEvent($user));
         }
     }
 
