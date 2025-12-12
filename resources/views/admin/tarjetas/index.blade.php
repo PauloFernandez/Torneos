@@ -5,10 +5,12 @@
 
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-lg font-semibold text-gray-800">Lista de Tarjetas</h2>
+        @can('Nuevo Tarjeta')
         <a href="{{ route('tarjetas.create') }}"
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
              <i class="fas fa-plus mr-2"></i> Nueva Tarjeta
         </a>
+        @endcan
     </div>
 
     <x-responsive-table>
@@ -24,10 +26,13 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $tarjeta->multa }}</td>
                 <!-- Botones -->
                 <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
-                    <a href="{{ route('tarjetas.edit', $tarjeta) }}"
-                         class="text-blue-600 hover:text-blue-900 mr-3">
-                         <i class="fas fa-edit"></i> Editar</a>
-                    @role('Administrador')
+                    @can('Editar Tarjeta')
+                    <a href="{{ route('tarjetas.edit', $tarjeta) }}" class="text-blue-600 hover:text-blue-900 mr-3">
+                         <i class="fas fa-edit"></i> Editar
+                    </a> 
+                    @endcan
+                    
+                    @can('Eliminar Tarjeta')
                         <form action="{{ route('tarjetas.destroy', $tarjeta) }}" method="post"
                             onsubmit="event.preventDefault(); confirmAction(this, 'delete-tarjeta')">
                             @csrf
@@ -35,7 +40,7 @@
                             <button class="text-red-600 hover:text-red-900">
                                 <i class="fas fa-trash"></i> Eliminar</button>
                         </form>
-                    @endrole
+                    @endcan
                 </td>
             </tr>
             @empty

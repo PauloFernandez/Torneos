@@ -16,11 +16,12 @@
                     </button>
                 </div>
             </form>
-
+            @can('Nuevo Partido')
             <a href="{{ route('partidos.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Nuevo Partidos
-            </a>
+            </a>    
+            @endcan
         </div>
     </div>
 
@@ -82,8 +83,8 @@
                          // Verificar si ya tiene resultados registrados
                          $hasResults = $partido->goles_local !== null && $partido->goles_visitante !== null;
                      @endphp
-
-                     @if (!$canRegisterResults)
+                    @can('Resultado Partido')
+                      @if (!$canRegisterResults)
                           <a href="{{ route('partidos.edit', $partido) }}"
                          class="text-blue-600 hover:text-blue-900">
                          <i class="fas fa-edit"></i> Editar</a>
@@ -105,10 +106,12 @@
                              <i class="fas fa-file-alt"></i> Resultados
                          @endif
                      </button>
-                     @endif
+                     @endif  
+                    @endcan
+                     
                      
                      {{-- Botón de Eliminar --}}
-                      @role('Administrador')
+                      @can('Eliminar Partido')
                          <form action="{{ route('partidos.destroy', $partido) }}" method="post"
                              onsubmit="event.preventDefault(); confirmAction(this, 'delete-partido')">
                              @csrf
@@ -116,7 +119,7 @@
                              <button class="text-red-600 hover:text-red-900">
                                  <i class="fas fa-trash"></i> Eliminar</button>
                          </form>
-                     @endrole
+                     @endcan
                  </td>
             </tr>
             @empty

@@ -16,11 +16,12 @@
                     </button>
                 </div>
             </form>
-
+            @can('Asignar Jugador')
             <a href="{{ route('jugadores.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Asignar Jugador
-            </a>
+            </a>    
+            @endcan
         </div>
     </div>
 
@@ -62,10 +63,13 @@
                     <!-- Botones -->
                     <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
                         <div class="flex items-center space-x-2">
+                            @can('Editar Jugador')
                             <a href="{{ route('jugadores.edit', [$jugador, $equipo]) }}" class="text-blue-600 hover:text-blue-900">
                                 <i class="fas fa-edit"></i> Editar
-                            </a>
-                            @role('Administrador')
+                            </a>    
+                            @endcan
+                            
+                            @can('Remover Jugador')
                                 <form action="{{ route('jugadores.destroy', [$jugador, $equipo]) }}" 
                                     method="post" 
                                     onsubmit="event.preventDefault(); confirmAction(this, 'remove-player')">
@@ -75,7 +79,7 @@
                                         <i class="fas fa-trash"></i> Remover
                                     </button>
                                 </form>
-                            @endrole
+                            @endcan
                         </div>
                     </td>
                 </tr>

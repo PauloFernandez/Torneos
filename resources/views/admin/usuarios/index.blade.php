@@ -63,7 +63,9 @@
                     </button>
                 </div>
             </form>
-
+            @can('Nuevo Usuario')
+                {{-- Cargar el linck usuarios.create aqui --}}
+            @endcan
             <a href="{{ route('usuarios.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Nuevo Usuario

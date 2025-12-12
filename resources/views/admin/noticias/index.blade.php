@@ -16,11 +16,12 @@
                     </button>
                 </div>
             </form>
-
+            @can('Nueva Noticia')
             <a href="{{ route('noticias.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Nueva Noticia
-            </a>
+            </a>    
+            @endcan
         </div>
     </div>
 
@@ -41,10 +42,13 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $noticia->user->name ?? 'Usuario eliminado' }}</td>
                 <!-- Botones -->
                 <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
-                    <a href="{{ route('noticias.edit', $noticia) }}"
-                         class="text-blue-600 hover:text-blue-900 mr-3">
-                         <i class="fas fa-edit"></i> Editar</a>
-                    @role('Administrador')
+                    @can('Editar Noticia')
+                    <a href="{{ route('noticias.edit', $noticia) }}" class="text-blue-600 hover:text-blue-900 mr-3">
+                         <i class="fas fa-edit"></i> Editar
+                    </a>  
+                    @endcan
+                    
+                    @can('Eliminar Noticia')
                         <form action="{{ route('noticias.destroy', $noticia) }}" method="post"
                             onsubmit="event.preventDefault(); confirmAction(this, 'delete-noticia')">
                             @csrf
@@ -52,7 +56,7 @@
                             <button class="text-red-600 hover:text-red-900">
                                 <i class="fas fa-trash"></i> Eliminar</button>
                         </form>
-                    @endrole
+                    @endcan
                 </td>
             </tr>
             @empty

@@ -17,10 +17,12 @@
                         </button>
                     </div>
             </form>
+            @can('Nueva Cancha')
             <a href="{{ route('canchas.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Nueva Cancha
-            </a>
+            </a> 
+            @endcan
         </div>
     </div>
 
@@ -49,17 +51,20 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $cancha->observaciones }}</td>
                 <!-- Botones -->
                 <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
+                    @can('Editar Cancha')
                     <a href="{{ route('canchas.edit', $cancha) }}" class="text-blue-600 hover:text-blue-900 mr-3">
-                        <i class="fas fa-edit"></i> Editar</a>
-                        @role('Administrador')
-                        <form action="{{ route('canchas.destroy', $cancha) }}" method="post"
+                        <i class="fas fa-edit"></i> Editar
+                    </a> 
+                    @endcan
+                    
+                    @can('Eliminar Cancha')
+                    <form action="{{ route('canchas.destroy', $cancha) }}" method="post"
                             onsubmit="event.preventDefault(); confirmAction(this, 'delete-cancha')">
                             @csrf
                             @method('delete')
-                            <button class="text-red-600 hover:text-red-900">
-                                <i class="fas fa-trash"></i> Eliminar</button>
-                        </form> 
-                    @endrole
+                        <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i> Eliminar</button>
+                    </form> 
+                    @endcan
                 </td>
             </tr>
             @empty

@@ -16,10 +16,12 @@
                     </button>
                 </div>
             </form>
+            @can('Nuevo Torneo')
             <a href="{{ route('torneos.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Nuevo Torneo
-            </a>
+            </a>   
+            @endcan
         </div>
     </div>
 
@@ -54,10 +56,13 @@
                 </td>
                 <!-- Botones -->
                 <td class="px-4 py-6 whitespace-nowrap text-sm font-medium flex">
-                    <a href="{{ route('torneos.edit', $torneo) }}"
-                         class="text-blue-600 hover:text-blue-900 mr-3">
-                         <i class="fas fa-edit"></i> Editar</a>
-                    @role('Administrador')
+                    @can('Editar Torneo')
+                    <a href="{{ route('torneos.edit', $torneo) }}" class="text-blue-600 hover:text-blue-900 mr-3">
+                         <i class="fas fa-edit"></i> Editar
+                    </a> 
+                    @endcan
+                    
+                    @can('Eliminar Torneo')
                         <form action="{{ route('torneos.destroy', $torneo) }}" method="post"
                             onsubmit="event.preventDefault(); confirmAction(this, 'delete-torneo')">
                             @csrf
@@ -65,7 +70,7 @@
                             <button class="text-red-600 hover:text-red-900">
                                 <i class="fas fa-trash"></i> Eliminar</button>
                         </form>
-                    @endrole
+                    @endcan
                 </td>
             </tr>
             @empty

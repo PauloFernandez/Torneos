@@ -50,10 +50,14 @@
                 </td>
                  {{-- Botones --}}
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
+                    @can('Cargar DetallePartido')
                     <a href="{{ route('detallePartidos.edit', $detallePartido) }}" class="text-blue-600 hover:text-blue-900">
-                         <i class="fas fa-edit"></i> Cargar</a>
+                         <i class="fas fa-edit"></i> Cargar
+                    </a>    
+                    @endcan
+                    
                     {{-- Botón de Eliminar --}}
-                      @role('Administrador')
+                      @can('Eliminar DetallePartido')
                          <form action="{{ route('detallePartidos.destroy', $detallePartido) }}" method="post"
                              onsubmit="event.preventDefault(); confirmAction(this, 'delete-detallePartido')">
                              @csrf
@@ -61,7 +65,7 @@
                              <button class="text-red-600 hover:text-red-900">
                                  <i class="fas fa-trash"></i> Eliminar</button>
                          </form>
-                     @endrole
+                     @endcan
                  </td>
             </tr>
             @empty
