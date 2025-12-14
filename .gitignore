@@ -11,7 +11,6 @@
 .env.example
 .env.production
 .phpunit.result.cache
-.github/*
 Homestead.json
 Homestead.yaml
 auth.json
