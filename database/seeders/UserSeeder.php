@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         $usuario = User::create([
             'file_uri' => null,
             'documento' => fake()->unique()->randomNumber(8),
-            'name' => 'Administrativo',
+            'name' => 'Usuario',
             'apellido' => 'Empleado',
             'fecha_nacimiento' => fake()->dateTimeInInterval('-40 years', '+20 years'),
             'direccion' => fake()->address,

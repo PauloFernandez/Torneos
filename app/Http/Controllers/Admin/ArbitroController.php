@@ -47,6 +47,6 @@ class ArbitroController extends Controller
     public function destroy(Arbitro $arbitro)
     {
         $arbitro->delete();
-        return back()->with('success', 'Arbitro eliminado exitosamente.');
+        return back()->with('danger', 'Arbitro eliminado exitosamente.');
     }
 }

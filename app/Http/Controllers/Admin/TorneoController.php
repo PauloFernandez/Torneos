@@ -54,6 +54,6 @@ class TorneoController extends Controller
     public function destroy(Torneo $torneo)
     {
         $torneo->delete();
-        return back()->with('success', 'Torneo eliminado exitosamente.');
+        return back()->with('danger', 'Torneo eliminado exitosamente.');
     }
 }

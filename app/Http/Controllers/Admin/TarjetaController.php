@@ -42,6 +42,6 @@ class TarjetaController extends Controller
     public function destroy(Tarjeta $tarjeta)
     {
         $tarjeta->delete();
-        return back()->with('success', 'Tarjeta eliminada exitosamente.');
+        return back()->with('danger', 'Tarjeta eliminada exitosamente.');
     }
 }

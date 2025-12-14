@@ -44,6 +44,6 @@ class CanchaController extends Controller
     public function destroy(Cancha $cancha)
     {
         $cancha->delete();
-        return back()->with('success', 'Cancha eliminada correctamente.');
+        return back()->with('danger', 'Cancha eliminada correctamente.');
     }
 }

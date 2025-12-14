@@ -93,6 +93,6 @@ class DetallePartidoController extends Controller
     {
         $detallePartido->detalles()->delete();
         $detallePartido->delete();
-        return back()->with('success', 'Partido eliminado exitosamente.');
+        return back()->with('danger', 'Partido eliminado exitosamente.');
     }
 }

@@ -76,7 +76,7 @@ class PartidoController extends Controller
     public function destroy(Partido $partido)
     {
         $partido->delete();
-        return back()->with('success', 'Partido eliminado exitosamente.');
+        return back()->with('danger', 'Partido eliminado exitosamente.');
     }
 
     //Nuevos metodos

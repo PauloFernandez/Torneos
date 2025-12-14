@@ -3,10 +3,17 @@
     <i class="fa-solid fa-circle-check mr-3"></i>
     <span class="flex-1">{{ $message }}</span>
     <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3 hover:bg-green-200 rounded-r transition-colors" onclick="this.parentElement.remove()" aria-label="Close">
-        <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <title>Close</title>
-            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
-        </svg>
+        <i class="fa-solid fa-xmark text-green-500 text-xl"></i>
+    </button>
+</div>
+@endif
+
+@if ($message = Session::get('error'))
+<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4 flex items-center" role="alert">
+    <i class="fa-solid fa-triangle-exclamation mr-3"></i>
+    <span class="flex-1">{{ $message }}</span>
+    <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3 hover:bg-yellow-200 rounded-r transition-colors" onclick="this.parentElement.remove()" aria-label="Close">
+        <i class="fa-solid fa-xmark text-yellow-500 text-xl"></i>
     </button>
 </div>
 @endif
@@ -16,10 +23,7 @@
     <i class="fa-solid fa-trash mr-3"></i>
     <span class="flex-1">{{ $message }}</span>
     <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3 hover:bg-red-200 rounded-r transition-colors" onclick="this.parentElement.remove()" aria-label="Close">
-        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <title>Close</title>
-            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
-        </svg>
+        <i class="fa-solid fa-xmark text-red-500 text-xl"></i>
     </button>
 </div>
 @endif

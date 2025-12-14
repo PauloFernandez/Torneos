@@ -179,6 +179,6 @@ class EquipoUserController extends Controller
         // Remover jugador del equipo
         $jugador->equipos()->detach($equipo->id);
 
-        return redirect()->route('jugadores.index')->with('success', 'Jugador removido del equipo exitosamente.');
+        return redirect()->route('jugadores.index')->with('danger', 'Jugador removido del equipo exitosamente.');
     }
 }
