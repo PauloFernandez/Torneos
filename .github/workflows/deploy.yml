@@ -89,21 +89,3 @@ jobs:
         port: 21
         local-dir: ./
         server-dir: /htdocs/
-        # Excluir archivos innecesarios
-        exclude: |
-          **/node_modules/**
-          **/resources/js
-          **/resources/css
-          **/resources/sass
-          **/tests/**
-          **/.git/**
-          **/.github/**
-          **/package*.json
-          **/postcss.config.js
-          **/README.md
-          **/vite.config.js
-          **/tailwind.config.js
-          **/.env
-          **/.env.example
-          **/.git
-          **/.gitignore
