@@ -73,6 +73,21 @@ jobs:
         echo "MAIL_FROM_ADDRESS=${{ secrets.MAIL_FROM_ADDRESS }}" >> .env
         echo "MAIL_FROM_NAME='Torneos Cup'" >> .env
 
+    # Crear .htaccess en raíz
+    - name: Create root .htaccess
+      run: |
+        cat > .htaccess << 'EOF'
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            
+            # Evitar bucles
+            RewriteCond %{REQUEST_URI} !^/public/
+            
+            # Redireccionar todo a public/
+            RewriteRule ^(.*)$ public/$1 [L]
+        </IfModule>
+        EOF
+
     # Opcional pero recomendado para rendimiento (si no causa problemas)
     - name: Cache Laravel configurations
       run: |
@@ -109,6 +124,7 @@ jobs:
         rm -rf resources/js
         rm -rf resources/css
         rm -rf resources/sass
+        rm -rf bootstrap/cache/*.php
 
     - name: Deploy to FTP server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
