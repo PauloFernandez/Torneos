@@ -32,7 +32,6 @@ class JugadorImport implements ToCollection, WithHeadingRow, WithValidation, Wit
             // Asignar rol de jugador
             $user->assignRole('jugador');
 
-            //event(new WelcomeEmailEvent($user));
         }
     }
 
