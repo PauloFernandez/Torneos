@@ -16,7 +16,7 @@
                     </button>
                 </div>
             </form>
-            @can('Nueva Arbitro')
+            @can('Nuevo Arbitro')
             <a href="{{ route('arbitros.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                 <i class="fas fa-plus mr-2"></i> Nuevo Arbitros
