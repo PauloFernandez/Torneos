@@ -124,7 +124,6 @@ jobs:
         rm -rf resources/js
         rm -rf resources/css
         rm -rf resources/sass
-        rm -rf bootstrap/cache/*.php
 
     - name: Deploy to FTP server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
