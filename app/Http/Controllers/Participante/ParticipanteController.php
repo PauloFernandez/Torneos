@@ -86,9 +86,8 @@ class ParticipanteController extends Controller
             }
 
             // Ordenar equipos dentro del torneo
-            $torneo->equipos = $torneo->equipos->sortByDesc('Pts')
-                ->sortByDesc('DG')
-                ->sortByDesc('GF')
+            $torneo->equipos = $torneo->equipos->sortByDesc('DG')
+                ->sortByDesc('Pts')
                 ->values();
         }
 
