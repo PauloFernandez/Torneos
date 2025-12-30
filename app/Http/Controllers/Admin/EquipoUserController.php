@@ -53,7 +53,7 @@ class EquipoUserController extends Controller
                     ->orWhere('apellido', 'LIKE', '%' . request('search') . '%');
             });
         })->where('estado', 'activo')->whereDoesntHave('equipos') // Excluir jugadores que ya tienen equipo
-            ->orderBy('apellido')->paginate(5)->withQueryString();
+            ->orderBy('apellido')->get();
 
         return view('admin.jugadores.create', compact('equipos', 'jugadores'));
     }
