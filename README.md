@@ -13,7 +13,7 @@ El proyecto fue desarrollado como **proyecto integrador**, con foco en lógica d
 🌐 **Demo online:**
 [https://torneosapp.infinityfreeapp.com](https://torneosapp.infinityfreeapp.com/)
 
-#
+---
 
 ## Características principales
 
@@ -37,7 +37,7 @@ El proyecto fue desarrollado como **proyecto integrador**, con foco en lógica d
 - Manejo de errores y validaciones mediante **Form Requests**
 - Control de eliminación de datos sensibles desde *Handler.php*
 
-##
+---
 
 ### ⚽ Jugadores / Público
 
@@ -51,7 +51,7 @@ El proyecto fue desarrollado como **proyecto integrador**, con foco en lógica d
 - **Edición de perfil personal**
 - Interfaz diferenciada del panel administrativo
 
-##
+---
 
 ### 👥 Roles y permisos
 
@@ -62,7 +62,7 @@ Acceso parcial al panel, con permisos asignados por el administrador.
 - **Jugador / Público**
 Acceso solo a vistas informativas del torneo y edición de su perfil, sin acceso al panel administrativo.
 
-##
+---
 
 ### 🛠 Stack tecnológico
 
@@ -89,7 +89,7 @@ Acceso solo a vistas informativas del torneo y edición de su perfil, sin acceso
   - Servicio reutilizable para carga de imágenes
   - Despliegue en hosting cloud
   
-##
+---
 
 ### 🧱 Arquitectura y decisiones técnicas
 
@@ -109,7 +109,7 @@ Principales decisiones técnicas:
     - Habilitación dinámica de acciones (editar / cargar resultados)
     - Registro de estadísticas por jugador
   
-##
+---
 
 ### 🤖 Uso de IA en el desarrollo
 
@@ -122,7 +122,7 @@ El proyecto fue desarrollado de forma **independiente**, utilizando herramientas
 
 En todos los casos, la IA fue utilizada como **herramienta de asistencia**, manteniendo siempre el control y la comprensión de la lógica implementada.
 
-##
+---
 
 ### 🚧 Estado del proyecto
 
@@ -135,7 +135,22 @@ En todos los casos, la IA fue utilizada como **herramienta de asistencia**, mant
 
 Estas mejoras fueron contempladas a nivel de diseño para facilitar una futura expansión del sistema.
 
-##
+---
+
+## 🚀 Instalación y configuración
+
+```bash
+  git clone https://github.com/PauloFernandez/Torneos.git
+  cd Torneos
+  composer install
+  cp .env.example .env
+  php artisan key:generate
+  php artisan migrate --seed
+  npm install
+  npm run build
+  php artisan serve
+```
+---
 
 ### 👤 Autor
 
