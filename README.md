@@ -1,70 +1,145 @@
-<p align="center">
-  <img src="public/img/Torneo_Futbol.png" alt="Logo">
-</p>
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🏆 Sistema de Gestión de Torneos de Fútbol
 
-# Torneos App
+## Descripción general
 
-**Torneos App** es una aplicación web diseñada para gestionar torneos de fútbol en diversas categorías. Permite a los administradores crear y gestionar torneos, equipos, jugadores, árbitros, canchas, partidos, reportes de resultados.
+Aplicación web desarrollada en **Laravel** para la gestión integral de torneos de fútbol en distintas categorías.
+El sistema permite administrar torneos, equipos, jugadores, árbitros, canchas y partidos, controlando el acceso mediante **roles y permisos** según el perfil del usuario.
 
-## Funcionalidades
+Está pensada tanto para **organizadores de torneos**, que necesitan un panel administrativo completo, como para jugadores, que acceden a la información del torneo en el que participan (estadísticas, posiciones, resultados) y pueden gestionar su perfil personal.
 
-- **Autenticacion**: Permite ingresar a la aplicacion mediante diferentes roles y permisos.
-- **Creación de Torneos**: Permite la creación de torneos con diversas categorías.
-- **Gestión de Equipos**: Gestión completa de los equipos participantes.
-- **Gestión de Jugadores**: Registro y administración de los jugadores en cada equipo.
-- **Gestión de Árbitros**: Administración de árbitros asignados a cada partido.
-- **Gestión de Canchas**: Asignación y gestión de las canchas disponibles para los partidos.
-- **Creación y Gestión de Partidos**: Agregar y gestionar los partidos programados.
-- **Reportes de Partidos Jugados**: Visualización de resultados y estadísticas de los partidos.
+El proyecto fue desarrollado como **proyecto integrador**, con foco en lógica de negocio real y escalabilidad.
 
 
-## Gran Torneo de Fútbol
+🌐 **Demo online:**
+[https://torneosapp.infinityfreeapp.com](https://torneosapp.infinityfreeapp.com/)
 
-En la página principal de la aplicación se destacan los diferentes torneos que se pueden crear, permitiendo que toda la comunidad futbolera participe. Cada torneo tiene su propia página donde se pueden consultar las reglas, que están disponibles para descarga en formato PDF.
+#
 
-El administrador puede elegir si desea mostrar las reglas del torneo en la página principal, y estas se cargan automáticamente al momento de crear el torneo.
+## Características principales
 
-## Usuarios
+### 🔐 Administración
 
-### Usuario Invitado (Jugador)
+- Gestión completa de **torneos** (categoría, fechas, costos, premios, reglas, visibilidad pública)
+- CRUD de **equipos** con carga de imagen (escudo)
+- CRUD de **usuarios** con asignación de roles y estado activo/inactivo
+- **Importación masiva de usuarios** (ideal para jugadores)
+- Gestión de **jugadores** con asignación a equipos (relación intermedia)
+- Gestión de **partidos** con:
+  - Asignación de torneo, equipos, cancha y árbitro
+  - Control de estados (Programado, Finalizado, Suspendido, Cancelado)
+  - Carga y edición de resultados mediante modal
+- Registro de:
+  - Goles
+  - Tarjetas
+  - Estadísticas por jugador
+- CRUD de **canchas, árbitros y sanciones**
+- Buscador y paginación en módulos clave
+- Manejo de errores y validaciones mediante **Form Requests**
+- Control de eliminación de datos sensibles desde *Handler.php*
 
-El usuario invitado o "Jugador" tiene acceso limitado a la aplicación. Podrá navegar y visualizar la siguiente información:
+##
 
-- Noticias generales
-- Detalles sobre equipos y jugadores (tabla de goleadores y asistencias)
-- Detalles de partidos "Jugados, Suspendidos, Finalizado, etc"
-- Visualizar la información torneo
+### ⚽ Jugadores / Público
 
-### Usuario Administrador
+- Acceso a la información del torneo en el que participan
+- Visualización de:
+  - Partidos
+  - Resultados
+  - Tabla de posiciones
+  - Goleadores
+  - Estadísticas
+- **Edición de perfil personal**
+- Interfaz diferenciada del panel administrativo
 
-El **Admin** es el usuario con permisos completos para gestionar todos los aspectos de la aplicación. Algunas de las tareas que puede realizar incluyen:
+##
 
-- **Crear torneos** y establecer los valores de inscripción
-- **Crear y asignar equipos** a los torneos
-- **Crear y asignar jugadores** a los equipos
-- **Definir las sanciones y valores de las tarjetas**
-- **Cargar partidos y resultados** de los mismos
-- **Gestionar Roles y permisos** asignar los roles y los permisos a los diferentes usuarios de la app
+### 👥 Roles y permisos
 
-### Usuario NO Administrador
+- **Administrador (Admin)**
+Acceso total al sistema y gestión completa de todos los módulos
+- **Usuario administrativo (Usuario)**
+Acceso parcial al panel, con permisos asignados por el administrador.
+- **Jugador / Público**
+Acceso solo a vistas informativas del torneo y edición de su perfil, sin acceso al panel administrativo.
 
-Este usuario/s sera creado por el usuario Admin, podra acceder a las funcionalidades segun los permisos que se le consedan. 
-No podra acceder a la funcionalidad de "Roles y Permisos" ya que esta restringida unicamente para el usuario Admin
+##
 
-## Información de Creación
+### 🛠 Stack tecnológico
 
-Esta aplicación ha sido desarrollada utilizando **Laravel** como framework principal y se apoya en **Docker** para la creación de entornos de desarrollo y despliegue. Su arquitectura es de tipo monolítica, empleando **Blade** como motor de plantillas, integrando **Tailwinds CCS** para el diseño de la interfaz de usuario. La base de datos utilizada es **MySQL**. 
+**Backend**
+  - PHP 8.x
+  - Laravel (framework MVC)
+  - Eloquent ORM
+  - Laravel Form Requests (validaciones)
+  - Middleware para control de acceso
+  - Notifications & Listeners
 
-**NOTA** He utilizado IA para apoyarme en algunas partes del codigo de la aplicacion.
-- En las vistas para aplicar los estilos y diseño. Codificacion de modals y acesoramiento para siertas partes como en el index de partidos
-- En codigo para la complegidad de algunas consultas, configuracion del archivo vite, configuracion de reglas de exepciones global en archivo "Handler.php", correcion de errores en el codigo de Servicio
+**Frontend**
+  - Blade Templates
+  - Tailwind CSS
+  - JavaScript (funcionalidades básicas)
+  - Modales para carga y edición de datos
 
-El proyecto se gestiona mediante **Git** y **GitHub** para el control de versiones. Asimismo, se utilizan **GitHub Actions** para automatizar el proceso de despliegue.
+**Base de datos**
+  - MySQL
+  - Migraciones y seeders
 
-Es importante señalar que, debido a las restricciones y limitaciones del servicio de hosting gratuito, parte del código y la configuración han sido adaptados para asegurar su correcto funcionamiento en el entorno web.
+**Otros**
+  - Mailtrap (testing de envío de emails)
+  - Servicio reutilizable para carga de imágenes
+  - Despliegue en hosting cloud
+  
+##
+
+### 🧱 Arquitectura y decisiones técnicas
+
+El proyecto sigue el patrón **MVC** de Laravel, separando claramente la lógica de negocio, las vistas y el acceso a datos.
+
+Principales decisiones técnicas:
+  - Uso de **relaciones Eloquent** (*hasMany, belongsTo, belongsToMany*) para modelar torneos, equipos, jugadores y partidos.
+  - Implementación de **roles y permisos** con control de acceso mediante middleware.
+  - Uso de **Form Requests** para validaciones y manejo de errores.
+  - Creación de un **servicio reutilizable** para la carga de imágenes, evitando duplicación de código en los módulos de equipos y usuarios.
+  - Manejo de excepciones personalizadas en *Handler.php* para proteger la eliminación de entidades sensibles (canchas, árbitros, etc.).
+  - Implementación de **Notifications y Listeners** para el envío de correos de bienvenida a usuarios creados individualmente.
+  - Separación de vistas entre **panel administrativo** y **vistas públicas/jugador**, según rol autenticado.
+  - Lógica de negocio avanzada en el módulo de **Partidos**, incluyendo:
+    - Estados del partido
+    - Validación de fechas
+    - Habilitación dinámica de acciones (editar / cargar resultados)
+    - Registro de estadísticas por jugador
+  
+##
+
+### 🤖 Uso de IA en el desarrollo
+
+El proyecto fue desarrollado de forma **independiente**, utilizando herramientas de **Inteligencia Artificial como apoyo** durante el proceso de desarrollo, principalmente para:
+
+  - Resolución de errores puntuales
+  - Refactorización y mejora de código
+  - Optimización de controladores y vistas
+  - Exploración de estilos visuales con Tailwind CSS
+
+En todos los casos, la IA fue utilizada como **herramienta de asistencia**, manteniendo siempre el control y la comprensión de la lógica implementada.
+
+##
+
+### 🚧 Estado del proyecto
+
+  - ✔ Funcional y desplegado en la nube
+  - ✔ Flujo completo de administración y visualización
+  - 🚧 Algunas funcionalidades pensadas para el futuro no están implementadas aún, como:
+    - Facturación y costos automáticos
+    - Reserva individual de canchas
+    - Envío de notificaciones masivas por email
+
+Estas mejoras fueron contempladas a nivel de diseño para facilitar una futura expansión del sistema.
+
+##
+
+### 👤 Autor
+
+Paulo Fernández
+Desarrollador Web Backend (Laravel)
+  - GitHub: [https://github.com/PauloFernandez](https://github.com/PauloFernandez)
+  - Proyecto: [https://torneosapp.infinityfreeapp.com/](https://torneosapp.infinityfreeapp.com/)
