@@ -9,9 +9,10 @@ Está pensada tanto para **organizadores de torneos**, que necesitan un panel ad
 
 El proyecto fue desarrollado como **proyecto integrador**, con foco en lógica de negocio real y escalabilidad.
 
-
 🌐 **Demo online:**
 [https://torneosapp.infinityfreeapp.com](https://torneosapp.infinityfreeapp.com/)
+
+Incluye datos de prueba y múltiples perfiles de usuario para explorar el sistema desde diferentes roles (administrador, usuario y jugador).
 
 ---
 
