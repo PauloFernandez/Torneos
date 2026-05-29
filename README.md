@@ -122,7 +122,6 @@ El proyecto fue desarrollado de forma **independiente**, utilizando herramientas
   - Exploración de estilos visuales con Tailwind CSS
 
 En todos los casos, la IA fue utilizada como **herramienta de asistencia**, manteniendo siempre el control y la comprensión de la lógica implementada.
-
 ---
 
 ### 🚧 Estado del proyecto
